@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FoodFlash</string>
+    <string name="enter_username">Enter Username</string>
 </resources>
