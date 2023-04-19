@@ -7,4 +7,6 @@
     <string name="enter_password_edittext_login">Enter Password</string>
     <string name="enter_username_edittext_login">Enter Username</string>
     <string name="foodflash_title_textview_signup">FoodFlash</string>
+    <string name="no_login_textview">Don\'t have an account? Sign Up</string>
+    <string name="no_signup_textview">Already have an account? Login</string>
 </resources>
