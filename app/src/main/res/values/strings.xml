@@ -4,4 +4,7 @@
     <string name="login_button_text">Login</string>
     <string name="signup_button_text">Signup</string>
     <string name="welcome_textview">Welcome to Food Flash!</string>
+    <string name="enter_password_edittext_login">Enter Password</string>
+    <string name="enter_username_edittext_login">Enter Username</string>
+    <string name="foodflash_title_textview_signup">FoodFlash</string>
 </resources>
