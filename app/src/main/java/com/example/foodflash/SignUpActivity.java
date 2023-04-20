@@ -36,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     UserDAO mUserDAO;
     List<User> mUserList;
     User mSpecificUser;
+    User deleter;
 
     ActivitySignUpBinding mActivitySignUpBinding;
 
@@ -106,6 +107,17 @@ public class SignUpActivity extends AppCompatActivity {
                                 submitUserInfo();
                             }
                         }
+                    }
+                }
+
+                // Manually delete entries
+                if(mUsername.getText().toString().equals("DeleteMyAccount")){
+                    String hardCodedString = "Yes";
+                    deleter = mUserDAO.getUserByName(hardCodedString);
+
+                    if(uniqueUsername(hardCodedString)){
+                        Log.d("DELETE?", deleter.toString());
+                        mUserDAO.delete(deleter);
                     }
                 }
 
