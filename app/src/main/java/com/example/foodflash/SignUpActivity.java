@@ -65,13 +65,12 @@ public class SignUpActivity extends AppCompatActivity {
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
 
-//        mTitler.setMovementMethod(new ScrollingMovementMethod());
-
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int submitCheck = 0;
 
+                // Validate Username
                 if (uniqueUsername(mUsername.getText().toString())){
                     if (mUsername.getText().toString().length() < 4){
                         mUsernameVerifier.setText("Username must be longer than 4 characters");
@@ -83,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                     mUsernameVerifier.setText("Username is already taken.");
                 }
 
-
+                // Validate Password
                 if(mPassword.getText().toString().length() > 4){
                     mPasswordVerifier.setText("");
                     if(mPassword.getText().toString().equals(mRetype.getText().toString())){
@@ -91,11 +90,11 @@ public class SignUpActivity extends AppCompatActivity {
                     } else { // Passwords dont match
                         mRetypeVerifier.setText("Passwords do not match");
                     }
-                }
-                else{
+                } else{
                     mPasswordVerifier.setText("Password must be longer than 4 characters");
                 }
 
+                // If all validaters pass
                 if(uniqueUsername(mUsername.getText().toString())){
                     // Usrename is valid
                     if (mUsername.getText().toString().length() > 4){
