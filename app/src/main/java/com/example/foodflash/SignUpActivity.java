@@ -35,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     UserDAO mUserDAO;
     List<User> mUserList;
-    List<User> mSpecificUser;
+    User mSpecificUser;
 
     ActivitySignUpBinding mActivitySignUpBinding;
 
@@ -71,12 +71,17 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int submitCheck = 0;
 
-                if (mUsername.getText().toString().length() < 4){
-                    mUsernameVerifier.setText("Username must be longer than 4 characters");
+                if (uniqueUsername(mUsername.getText().toString())){
+                    if (mUsername.getText().toString().length() < 4){
+                        mUsernameVerifier.setText("Username must be longer than 4 characters");
+                    }
+                    else{
+                        mUsernameVerifier.setText("");
+                    }
+                } else{
+                    mUsernameVerifier.setText("Username is already taken.");
                 }
-                else{
-                    mUsernameVerifier.setText("");
-                }
+
 
                 if(mPassword.getText().toString().length() > 4){
                     mPasswordVerifier.setText("");
@@ -96,13 +101,16 @@ public class SignUpActivity extends AppCompatActivity {
                     if(mPassword.getText().toString().length() > 4){
                         // Retype password is valid
                         if(mPassword.getText().toString().equals(mRetype.getText().toString())){
+
+
+//                            usernameVerification();
+
+
+
                             submitUserInfo();
                         }
                     }
                 }
-
-//                mTitler.setText(mPassword.getText().toString().equals(mRetype.getText().toString()));
-
                 refreshDisplay();
             }
         });
@@ -151,7 +159,13 @@ public class SignUpActivity extends AppCompatActivity {
 //        }else{
 //            mTitler.setText(R.string.no_users_msg);
 //        }
-//        mSpecificUser = mUserDAO.getUserById();
+
+    }
+
+    private boolean uniqueUsername(String userName){
+        mSpecificUser = mUserDAO.getUserByName(userName);
+
+        return mSpecificUser == null;
     }
 
     public static Intent getIntent(Context context){

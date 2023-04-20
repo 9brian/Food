@@ -32,5 +32,5 @@ public interface UserDAO {
 
 
     @Query("SELECT * FROM " + AppDataBase.USER_TABLE + " WHERE mUserName = :userName")
-    List<User> getUserByName(String userName);
+    User getUserByName(String userName);
 }
