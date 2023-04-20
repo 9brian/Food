@@ -59,10 +59,17 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(mPassword.getText().toString().equals(mRetype.getText().toString())){
                     mTitler.setText("Works");
+                    // Username verifier
+                    // Password longer than 4 characters verifier
+                    // Retype password is same verifier
+//                submitUserInfo();
+                } else{
+                    // Username verifier displays username is already taken
+                    // Password verifier displays password is not longer than 4 characters
+                    // Retype password displays not the same
+//                submitUserInfo();
                 }
 //                mTitler.setText(mPassword.getText().toString().equals(mRetype.getText().toString()));
-//                submitUserInfo();
-//                deleteUserInfo();
 
 //                refreshDisplay();
             }
