@@ -9,4 +9,5 @@
     <string name="foodflash_title_textview_signup">FoodFlash</string>
     <string name="no_login_textview">Don\'t have an account? Sign Up</string>
     <string name="no_signup_textview">Already have an account? Login</string>
+    <string name="no_users_msg">No users yet, time to gain popularity.</string>
 </resources>

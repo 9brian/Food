@@ -14,20 +14,23 @@ public class User {
     private String mPassWord;
     private String mDiscountId;
 
-    public User(String userName, String passWord, String discountId) {
+    private boolean mIsAdmin;
+
+    public User(String userName, String passWord, String discountId, boolean isAdmin) {
         mUserName = userName;
         mPassWord = passWord;
         mDiscountId = discountId;
+        mIsAdmin = isAdmin;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "mUserId='" + mUserId + '\'' +
-                "mUserName='" + mUserName + '\'' +
-                ", mPassWord='" + mPassWord + '\'' +
-                ", mDiscountId='" + mDiscountId + '\'' +
-                '}';
+        return "UserId: " + mUserId + "\n" +
+                "username: " + mUserName + "\n" +
+                "password: " + mPassWord + "\n" +
+                "discountId" + mDiscountId + "\n" +
+                "mDiscountId" + mIsAdmin + "\n" +
+                "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=";
     }
 
     public int getUserId() {
@@ -60,5 +63,13 @@ public class User {
 
     public void setDiscountId(String discountId) {
         mDiscountId = discountId;
+    }
+
+    public boolean isAdmin() {
+        return mIsAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        mIsAdmin = admin;
     }
 }
