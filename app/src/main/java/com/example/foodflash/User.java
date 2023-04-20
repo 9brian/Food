@@ -30,7 +30,7 @@ public class User {
                 "password: " + mPassWord + "\n" +
                 "discountId" + mDiscountId + "\n" +
                 "mDiscountId" + mIsAdmin + "\n" +
-                "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=";
+                "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=" + "\n";
     }
 
     public int getUserId() {
