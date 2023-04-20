@@ -68,8 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int submitCheck = 0;
-
                 // Validate Username
                 if (uniqueUsername(mUsername.getText().toString())){
                     if (mUsername.getText().toString().length() < 4){
@@ -125,6 +123,65 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        mSignup.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                // Validate Username
+                if (uniqueUsername(mUsername.getText().toString())){
+                    if (mUsername.getText().toString().length() < 4){
+                        mUsernameVerifier.setText("Username must be longer than 4 characters");
+                    }
+                    else{
+                        mUsernameVerifier.setText("");
+                    }
+                } else{
+                    mUsernameVerifier.setText("Username is already taken.");
+                }
+
+                // Validate Password
+                if(mPassword.getText().toString().length() > 4){
+                    mPasswordVerifier.setText("");
+                    if(mPassword.getText().toString().equals(mRetype.getText().toString())){
+                        mRetypeVerifier.setText("");
+                    } else { // Passwords dont match
+                        mRetypeVerifier.setText("Passwords do not match");
+                    }
+                } else{
+                    mPasswordVerifier.setText("Password must be longer than 4 characters");
+                }
+
+                // If all validaters pass
+                if(uniqueUsername(mUsername.getText().toString())){
+                    // Usrename is valid
+                    if (mUsername.getText().toString().length() > 4){
+                        // Password is valid
+                        if(mPassword.getText().toString().length() > 4){
+                            // Retype password is valid
+                            if(mPassword.getText().toString().equals(mRetype.getText().toString())){
+//                            usernameVerification();
+                                // Send Intent
+                                submitUserInfo();
+                            }
+                        }
+                    }
+                }
+
+                // Manually delete entries
+                if(mUsername.getText().toString().equals("DeleteMyAccount")){
+                    String hardCodedString = "Yes";
+                    deleter = mUserDAO.getUserByName(hardCodedString);
+
+                    if(uniqueUsername(hardCodedString)){
+                        Log.d("DELETE?", deleter.toString());
+                        mUserDAO.delete(deleter);
+                    }
+                }
+
+                refreshDisplay();
+                return false;
+            }
+        });
+
         mNoSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,6 +213,17 @@ public class SignUpActivity extends AppCompatActivity {
         User user = new User(username, password, discounter, isAdmin);
 
         mUserDAO.insert(user);
+    }
+
+    private void submitAdminInfo(){
+        String username = mUsername.getText().toString();
+        String password = mPassword.getText().toString();
+        String discounter = "1";
+        boolean isAdmin = true;
+
+        User admin = new User(username, password, discounter, isAdmin);
+
+        mUserDAO.insert(admin);
     }
 
     private void refreshDisplay(){
