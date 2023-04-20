@@ -28,4 +28,9 @@ public interface UserDAO {
 //    All users based on userId
     @Query("SELECT * FROM " + AppDataBase.USER_TABLE + " WHERE mUserId = :userId")
     List<User> getUserById(int userId);
+
+
+
+    @Query("SELECT * FROM " + AppDataBase.USER_TABLE + " WHERE mUserName = :userName")
+    List<User> getUserByName(String userName);
 }
