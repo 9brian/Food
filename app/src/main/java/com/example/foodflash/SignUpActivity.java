@@ -29,8 +29,13 @@ public class SignUpActivity extends AppCompatActivity {
     Button mSignup;
     TextView mNoSignup;
 
+    TextView mUsernameVerifier;
+    TextView mPasswordVerifier;
+    TextView mRetypeVerifier;
+
     UserDAO mUserDAO;
     List<User> mUserList;
+    List<User> mSpecificUser;
 
     ActivitySignUpBinding mActivitySignUpBinding;
 
@@ -46,8 +51,15 @@ public class SignUpActivity extends AppCompatActivity {
         mUsername = mActivitySignUpBinding.usernameEdittextSignup;
         mPassword = mActivitySignUpBinding.passwordEdittextSignup;
         mRetype = mActivitySignUpBinding.retypePasswordEdittextSignup;
+
+
         mSignup = mActivitySignUpBinding.signupButtonSignup;
         mNoSignup = mActivitySignUpBinding.noSignupTextview;
+
+        mUsernameVerifier = mActivitySignUpBinding.usernameTextviewVerifier;
+        mPasswordVerifier = mActivitySignUpBinding.passwordTextviewVerifier;
+        mRetypeVerifier = mActivitySignUpBinding.retypePasswordTextviewVerifer;
+
 
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
@@ -57,21 +69,41 @@ public class SignUpActivity extends AppCompatActivity {
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mPassword.getText().toString().equals(mRetype.getText().toString())){
-                    mTitler.setText("Works");
-                    // Username verifier
-                    // Password longer than 4 characters verifier
-                    // Retype password is same verifier
-//                submitUserInfo();
-                } else{
-                    // Username verifier displays username is already taken
-                    // Password verifier displays password is not longer than 4 characters
-                    // Retype password displays not the same
-//                submitUserInfo();
+                int submitCheck = 0;
+
+                if (mUsername.getText().toString().length() < 4){
+                    mUsernameVerifier.setText("Username must be longer than 4 characters");
                 }
+                else{
+                    mUsernameVerifier.setText("");
+                }
+
+                if(mPassword.getText().toString().length() > 4){
+                    mPasswordVerifier.setText("");
+                    if(mPassword.getText().toString().equals(mRetype.getText().toString())){
+                        mRetypeVerifier.setText("");
+                    } else { // Passwords dont match
+                        mRetypeVerifier.setText("Passwords do not match");
+                    }
+                }
+                else{
+                    mPasswordVerifier.setText("Password must be longer than 4 characters");
+                }
+
+                // Usrename is valid
+                if (mUsername.getText().toString().length() > 4){
+                    // Password is valid
+                    if(mPassword.getText().toString().length() > 4){
+                        // Retype password is valid
+                        if(mPassword.getText().toString().equals(mRetype.getText().toString())){
+                            submitUserInfo();
+                        }
+                    }
+                }
+
 //                mTitler.setText(mPassword.getText().toString().equals(mRetype.getText().toString()));
 
-//                refreshDisplay();
+                refreshDisplay();
             }
         });
 
@@ -109,16 +141,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void refreshDisplay(){
-        mUserList = mUserDAO.getUsers();
-        if(!mUserList.isEmpty()){
-            StringBuilder sb = new StringBuilder();
-            for(User u : mUserList){
-                sb.append(u.toString());
-            }
-            mTitler.setText(sb.toString());
-        }else{
-            mTitler.setText(R.string.no_users_msg);
-        }
+//        mUserList = mUserDAO.getUsers();
+//        if(!mUserList.isEmpty()){
+//            StringBuilder sb = new StringBuilder();
+//            for(User u : mUserList){
+//                sb.append(u.toString());
+//            }
+////            mTitler.setText(sb.toString());
+//        }else{
+//            mTitler.setText(R.string.no_users_msg);
+//        }
+//        mSpecificUser = mUserDAO.getUserById();
     }
 
     public static Intent getIntent(Context context){
