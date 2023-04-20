@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (findUser(username) && p.equals(password)){
                     Log.d("UNIQUE", "Logging In");
+                    // Send intent
 
                 } else if (password.length() < 4) {
 //                    Log.d("Left blank", "Enter password");

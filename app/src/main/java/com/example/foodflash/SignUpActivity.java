@@ -103,6 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                             // Retype password is valid
                             if(mPassword.getText().toString().equals(mRetype.getText().toString())){
 //                            usernameVerification();
+                                // Send Intent
                                 submitUserInfo();
                             }
                         }
