@@ -61,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (findUser(username) && p.equals(password)){
                     Log.d("UNIQUE", "Logging In");
                     // Send intent
+                    Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+                    startActivity(intent);
 
                 } else if (password.length() < 4) {
 //                    Log.d("Left blank", "Enter password");

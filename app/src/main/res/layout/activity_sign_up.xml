@@ -40,7 +40,7 @@
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:gravity="center"
+
         android:textColor="@color/design_default_color_error"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/password_edittext_signup"
@@ -48,20 +48,23 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_edittext_signup"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/password_edittext_signup"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:gravity="center"
+
+        android:inputType="textPassword"
         android:hint="Enter Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/username_edittext_signup"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="0.082"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/password_textview_verifier"
@@ -82,14 +85,15 @@
         android:id="@+id/retype_password_edittext_signup"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:gravity="center"
+        android:inputType="textPassword"
         android:hint="Retype Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_edittext_signup"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.092"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/retype_password_textview_verifer"

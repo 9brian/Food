@@ -103,6 +103,9 @@ public class SignUpActivity extends AppCompatActivity {
 //                            usernameVerification();
                                 // Send Intent
                                 submitUserInfo();
+                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+                                startActivity(intent);
+
                             }
                         }
                     }
@@ -110,17 +113,22 @@ public class SignUpActivity extends AppCompatActivity {
 
                 // Manually delete entries
                 if(mUsername.getText().toString().equals("DeleteMyAccount")){
-                    String hardCodedString = "Yes";
+                    String hardCodedString = "admin2";
                     deleter = mUserDAO.getUserByName(hardCodedString);
 
-                    if(uniqueUsername(hardCodedString)){
+                    if(!uniqueUsername(hardCodedString)){
                         Log.d("DELETE?", deleter.toString());
                         mUserDAO.delete(deleter);
+                    }
+                    else{
+                        Log.d("DELETE", deleter.toString());
                     }
                 }
 
                 refreshDisplay();
             }
+
+
         });
 
         mSignup.setOnLongClickListener(new View.OnLongClickListener() {
@@ -160,7 +168,9 @@ public class SignUpActivity extends AppCompatActivity {
                             if(mPassword.getText().toString().equals(mRetype.getText().toString())){
 //                            usernameVerification();
                                 // Send Intent
-                                submitUserInfo();
+                                submitAdminInfo();
+                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+                                startActivity(intent);
                             }
                         }
                     }

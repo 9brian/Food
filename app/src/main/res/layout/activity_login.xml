@@ -35,19 +35,19 @@
         android:id="@+id/password_edittext"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:gravity="center"
+        android:inputType="textPassword"
         android:hint="@string/enter_password_edittext_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_edittext"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintVertical_bias="0.184"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/login_verifier_textview"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:gravity="center"
         android:textColor="@color/design_default_color_error"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/no_login_textview"
@@ -55,7 +55,8 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_edittext"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.054"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/login_login_button"
