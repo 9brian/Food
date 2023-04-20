@@ -95,22 +95,20 @@ public class SignUpActivity extends AppCompatActivity {
                     mPasswordVerifier.setText("Password must be longer than 4 characters");
                 }
 
-                // Usrename is valid
-                if (mUsername.getText().toString().length() > 4){
-                    // Password is valid
-                    if(mPassword.getText().toString().length() > 4){
-                        // Retype password is valid
-                        if(mPassword.getText().toString().equals(mRetype.getText().toString())){
-
-
+                if(uniqueUsername(mUsername.getText().toString())){
+                    // Usrename is valid
+                    if (mUsername.getText().toString().length() > 4){
+                        // Password is valid
+                        if(mPassword.getText().toString().length() > 4){
+                            // Retype password is valid
+                            if(mPassword.getText().toString().equals(mRetype.getText().toString())){
 //                            usernameVerification();
-
-
-
-                            submitUserInfo();
+                                submitUserInfo();
+                            }
                         }
                     }
                 }
+
                 refreshDisplay();
             }
         });
