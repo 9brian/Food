@@ -59,11 +59,14 @@ public class LoginActivity extends AppCompatActivity {
                 String p = mExistingUser.getPassWord();
 
                 if (findUser(username) && p.equals(password)){
-
                     Log.d("UNIQUE", "Logging In");
 
-                } else{
-                    Log.d("UNIQUE", "Username/Password dne");
+                } else if (password.length() < 4) {
+//                    Log.d("Left blank", "Enter password");
+                    mLoginVerify.setText("Password must be longer than 4 characters");
+                } else {
+//                    Log.d("UNIQUE", "Username/Password dne");
+                    mLoginVerify.setText("Username/Password are incorrect");
                 }
             }
         });
