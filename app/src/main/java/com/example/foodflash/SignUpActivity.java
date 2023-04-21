@@ -103,9 +103,16 @@ public class SignUpActivity extends AppCompatActivity {
 //                            usernameVerification();
                                 // Send Intent
                                 submitUserInfo();
-                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
-                                startActivity(intent);
+//                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+//                                startActivity(intent);
 
+//      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+
+                                String username = mUsername.getText().toString();
+
+                                Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+                                intent.putExtra("name", username);
+                                startActivity(intent);
                             }
                         }
                     }
@@ -158,9 +165,9 @@ public class SignUpActivity extends AppCompatActivity {
                     mPasswordVerifier.setText("Password must be longer than 4 characters");
                 }
 
-                // If all validaters pass
+                // If all validators pass
                 if(uniqueUsername(mUsername.getText().toString())){
-                    // Usrename is valid
+                    // Username is valid
                     if (mUsername.getText().toString().length() > 4){
                         // Password is valid
                         if(mPassword.getText().toString().length() > 4){
@@ -169,7 +176,12 @@ public class SignUpActivity extends AppCompatActivity {
 //                            usernameVerification();
                                 // Send Intent
                                 submitAdminInfo();
-                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+//                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+//                                startActivity(intent);
+                                String username = mUsername.getText().toString();
+//      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+                                Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+                                intent.putExtra("name", username);
                                 startActivity(intent);
                             }
                         }

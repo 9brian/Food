@@ -18,6 +18,7 @@ import com.example.foodflash.databinding.ActivityLoginBinding;
 import com.example.foodflash.databinding.ActivityMainBinding;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String LOGIN_ACTIVITY_NAME = "com.example.foodflash.LoginActivityName";
 
     EditText mUsername_edittext;
     EditText mPassword_edittext;
@@ -61,7 +62,13 @@ public class LoginActivity extends AppCompatActivity {
                 if (findUser(username) && p.equals(password)){
                     Log.d("UNIQUE", "Logging In");
                     // Send intent
-                    Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+//                    Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+//                    startActivity(intent);
+
+//                  https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                  Sending extras bc if I changed the function things would break
+                    Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+                    intent.putExtra("name", username);
                     startActivity(intent);
 
                 } else if (password.length() < 4) {
@@ -71,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    Log.d("UNIQUE", "Username/Password dne");
                     mLoginVerify.setText("Username/Password are incorrect");
                 }
+
+
             }
         });
 
