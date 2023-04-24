@@ -61,16 +61,16 @@ public class LoginActivity extends AppCompatActivity {
 
 //                Log.d("username", username);
 
-                mExistingUser = mUserDAO.getUserByName(username);
-                String p = mExistingUser.getPassWord();
+                if(findUser(username)){
+                    mExistingUser = mUserDAO.getUserByName(username);
+                    String p = mExistingUser.getPassWord();
 
-                if (findUser(username) && p.equals(password)){
+                    if(p.equals(password)){
+                        SharedPreferences.Editor editor = mSharedPreferences.edit();
+                        editor.putString("loginName", username);
+                        editor.apply();
 
-                    SharedPreferences.Editor editor = mSharedPreferences.edit();
-                    editor.putString("loginName", username);
-                    editor.apply();
-
-                    Log.d("NAMER", "This is the name -> " + username + "<-");
+                        Log.d("NAMER", "This is the name -> " + username + "<-");
 
 //                    mSharedPreferences = getApplicationContext().getSharedPreferences("loginName", Context.MODE_PRIVATE);
 //                    String name = mSharedPreferences.getString("loginName", "default");
@@ -78,23 +78,28 @@ public class LoginActivity extends AppCompatActivity {
 //
 //                    Log.d("NAMER", "This is the name -> " + name + "<-");
 
-
-
-
-
 //                  https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                  Sending extras bc if I changed the function things would break
-                    Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
-                    intent.putExtra("name", username);
-                    startActivity(intent);
-
-                } else if (password.length() < 4) {
-//                    Log.d("Left blank", "Enter password");
-                    mLoginVerify.setText("Password must be longer than 4 characters");
-                } else {
-//                    Log.d("UNIQUE", "Username/Password dne");
+                        Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+                        intent.putExtra("name", username);
+                        startActivity(intent);
+                    }
+                    else{
+                        mLoginVerify.setText("Username/Password are incorrect");
+                    }
+                }
+                else{
                     mLoginVerify.setText("Username/Password are incorrect");
                 }
+
+
+//                if (password.length() < 4) {
+////                    Log.d("Left blank", "Enter password");
+//                    mLoginVerify.setText("Password must be longer than 4 characters");
+//                } else {
+////                    Log.d("UNIQUE", "Username/Password dne");
+//
+//                }
 
 
             }

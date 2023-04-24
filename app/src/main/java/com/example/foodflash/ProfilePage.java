@@ -61,6 +61,8 @@ public class ProfilePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+//              https://stackoverflow.com/questions/3687315/how-to-delete-shared-preferences-data-from-app-in-android
+//              Clear shared preferences (clear all of them)
                 mSharedPreferences = getApplicationContext().getSharedPreferences("loginName", Context.MODE_PRIVATE);
                 mSharedPreferences.edit().clear().apply();
 
