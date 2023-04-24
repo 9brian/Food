@@ -5,6 +5,7 @@ import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     User mSpecificUser;
     User mExistingUser;
 
+    SharedPreferences mSharedPreferences;
+
     ActivityLoginBinding mActivityLoginBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +51,36 @@ public class LoginActivity extends AppCompatActivity {
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
 
+        mSharedPreferences = getSharedPreferences("loginName", Context.MODE_PRIVATE);
+
         mLoginLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username = mUsername_edittext.getText().toString();
                 String password = mPassword_edittext.getText().toString();
 
-                Log.d("username", username);
+//                Log.d("username", username);
 
                 mExistingUser = mUserDAO.getUserByName(username);
                 String p = mExistingUser.getPassWord();
 
                 if (findUser(username) && p.equals(password)){
-                    Log.d("UNIQUE", "Logging In");
-                    // Send intent
-//                    Intent intent = LandingPageActivity.getIntent(getApplicationContext());
-//                    startActivity(intent);
+
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    editor.putString("loginName", username);
+                    editor.apply();
+
+                    Log.d("NAMER", "This is the name -> " + username + "<-");
+
+//                    mSharedPreferences = getApplicationContext().getSharedPreferences("loginName", Context.MODE_PRIVATE);
+//                    String name = mSharedPreferences.getString("loginName", "default");
+//                    String newLocation;
+//
+//                    Log.d("NAMER", "This is the name -> " + name + "<-");
+
+
+
+
 
 //                  https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                  Sending extras bc if I changed the function things would break

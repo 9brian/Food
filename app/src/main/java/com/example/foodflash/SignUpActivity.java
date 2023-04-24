@@ -5,6 +5,7 @@ import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
     User deleter;
 
     ActivitySignUpBinding mActivitySignUpBinding;
+    SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +67,15 @@ public class SignUpActivity extends AppCompatActivity {
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
 
+        mSharedPreferences = getSharedPreferences("loginName", Context.MODE_PRIVATE);
+
         mSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String username = mUsername.getText().toString();
                 // Validate Username
-                if (uniqueUsername(mUsername.getText().toString())){
-                    if (mUsername.getText().toString().length() < 4){
+                if (uniqueUsername(username)){
+                    if (username.length() < 4){
                         mUsernameVerifier.setText("Username must be longer than 4 characters");
                     }
                     else{
@@ -93,9 +98,9 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 // If all validaters pass
-                if(uniqueUsername(mUsername.getText().toString())){
+                if(uniqueUsername(username)){
                     // Usrename is valid
-                    if (mUsername.getText().toString().length() > 4){
+                    if (username.length() > 4){
                         // Password is valid
                         if(mPassword.getText().toString().length() > 4){
                             // Retype password is valid
@@ -108,7 +113,9 @@ public class SignUpActivity extends AppCompatActivity {
 
 //      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 
-                                String username = mUsername.getText().toString();
+                                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                editor.putString("loginName", username);
+                                editor.apply();
 
                                 Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
                                 intent.putExtra("name", username);

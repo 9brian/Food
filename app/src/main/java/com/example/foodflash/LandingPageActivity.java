@@ -103,7 +103,15 @@ public class LandingPageActivity extends AppCompatActivity {
         mProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//      Manual intent bc changing the function would break the activity
+                Intent intent = getIntent();
+                String name = intent.getStringExtra("name");
                 Log.d("profile", "reroute");
+
+                Intent intenter = new Intent(getApplicationContext(), ProfilePage.class);
+                intenter.putExtra("name", name);
+                startActivity(intenter);
             }
         });
     }
