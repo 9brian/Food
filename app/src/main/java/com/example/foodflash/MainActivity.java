@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     Button mSignUpButton;
 
     ActivityMainBinding mActivityMainBinding;
+    SharedPreferences mSharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,20 @@ public class MainActivity extends AppCompatActivity {
         mTitle = mActivityMainBinding.titleId;
         mLoginButton = mActivityMainBinding.loginButton;
         mSignUpButton = mActivityMainBinding.signupButton;
+        Log.d("WORKING", "working");
+
+
+        mSharedPreferences = getApplicationContext().getSharedPreferences("loginName", Context.MODE_PRIVATE);
+
+        if(mSharedPreferences.contains("loginName")){
+            Log.d("HEBF", "JERE");
+//                 https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                  Sending extras bc if I changed the function things would break
+            Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+            String username = mSharedPreferences.getString("loginName", "");
+            intent.putExtra("name", username);
+            startActivity(intent);
+        }
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
