@@ -41,6 +41,7 @@ public class ProfilePage extends AppCompatActivity {
         String name = intent.getStringExtra("name");
 
         mProfileUsername.setText(name);
+        // Set up profile page
 
         discountButton.setOnClickListener(new View.OnClickListener() {
             @Override
