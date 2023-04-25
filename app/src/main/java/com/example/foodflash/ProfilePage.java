@@ -101,7 +101,7 @@ public class ProfilePage extends AppCompatActivity {
                                         mUserDAO.delete(deleteUser);
                                     }
                                     else{
-                                        Log.d("DELETE", deleteUser.toString());
+                                        Log.d("Why", "We shouldn't be here");
                                     }
                                 dialogInterface.dismiss();
                             }
