@@ -25,7 +25,7 @@ public class Item {
         return "ItemId: " +  mItemId + "\n" +
                 "ItemName: " + mItemName + '\n' +
                 "Description: " + mItemDescription + '\n' +
-                "Price: " + mItemPrice + '\n' +
+                "Price: $" + mItemPrice + '\n' +
                 "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=" + "\n";
     }
 

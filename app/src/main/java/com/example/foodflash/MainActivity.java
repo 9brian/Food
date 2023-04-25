@@ -40,13 +40,10 @@ public class MainActivity extends AppCompatActivity {
         mTitle = mActivityMainBinding.titleId;
         mLoginButton = mActivityMainBinding.loginButton;
         mSignUpButton = mActivityMainBinding.signupButton;
-        Log.d("WORKING", "working");
-
 
         mSharedPreferences = getApplicationContext().getSharedPreferences("loginName", Context.MODE_PRIVATE);
 
         if(mSharedPreferences.contains("loginName")){
-            Log.d("HEBF", "JERE");
 //                 https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                  Sending extras bc if I changed the function things would break
             Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
@@ -58,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String workingClick = mTitle.getText().toString();
-//                mTitle.setText("Welcome");
                 Intent intent = LoginActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
@@ -68,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         mSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String workingClick = mTitle.getText().toString();
-//                mTitle.setText("Bye");
                 Intent intent = SignUpActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }

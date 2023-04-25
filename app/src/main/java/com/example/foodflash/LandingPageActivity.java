@@ -121,7 +121,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
     private User userFinder(String userName){
         mFoundUser = mUserDAO.getUserByName(userName);
-        // Returns true of user does not exist
+        // Returns true if user does not exist
         return mFoundUser;
     }
 

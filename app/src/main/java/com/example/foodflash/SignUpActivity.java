@@ -35,7 +35,6 @@ public class SignUpActivity extends AppCompatActivity {
     TextView mRetypeVerifier;
 
     UserDAO mUserDAO;
-    List<User> mUserList;
     User mSpecificUser;
     User deleter;
 
@@ -97,15 +96,14 @@ public class SignUpActivity extends AppCompatActivity {
                     mPasswordVerifier.setText("Password must be longer than 4 characters");
                 }
 
-                // If all validaters pass
+                // If all validator pass
                 if(uniqueUsername(username)){
-                    // Usrename is valid
+                    // Username is valid
                     if (username.length() > 4){
                         // Password is valid
                         if(mPassword.getText().toString().length() > 4){
                             // Retype password is valid
                             if(mPassword.getText().toString().equals(mRetype.getText().toString())){
-//                            usernameVerification();
                                 // Send Intent
                                 submitUserInfo();
 //                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
@@ -138,8 +136,6 @@ public class SignUpActivity extends AppCompatActivity {
 //                        Log.d("DELETE", deleter.toString());
 //                    }
 //                }
-
-                refreshDisplay();
             }
 
 
@@ -180,7 +176,6 @@ public class SignUpActivity extends AppCompatActivity {
                         if(mPassword.getText().toString().length() > 4){
                             // Retype password is valid
                             if(mPassword.getText().toString().equals(mRetype.getText().toString())){
-//                            usernameVerification();
                                 // Send Intent
                                 submitAdminInfo();
 //                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
@@ -205,8 +200,6 @@ public class SignUpActivity extends AppCompatActivity {
                         mUserDAO.delete(deleter);
                     }
                 }
-
-                refreshDisplay();
                 return false;
             }
         });
@@ -218,9 +211,6 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        refreshDisplay();
     }//end of onCreate
 
 //    private void deleteUserInfo(){
@@ -253,20 +243,6 @@ public class SignUpActivity extends AppCompatActivity {
         User admin = new User(username, password, discounter, isAdmin);
 
         mUserDAO.insert(admin);
-    }
-
-    private void refreshDisplay(){
-//        mUserList = mUserDAO.getUsers();
-//        if(!mUserList.isEmpty()){
-//            StringBuilder sb = new StringBuilder();
-//            for(User u : mUserList){
-//                sb.append(u.toString());
-//            }
-////            mTitler.setText(sb.toString());
-//        }else{
-//            mTitler.setText(R.string.no_users_msg);
-//        }
-
     }
 
     private boolean uniqueUsername(String userName){

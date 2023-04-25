@@ -59,8 +59,6 @@ public class LoginActivity extends AppCompatActivity {
                 String username = mUsername_edittext.getText().toString();
                 String password = mPassword_edittext.getText().toString();
 
-//                Log.d("username", username);
-
                 if(findUser(username)){
                     mExistingUser = mUserDAO.getUserByName(username);
                     String p = mExistingUser.getPassWord();
@@ -69,14 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = mSharedPreferences.edit();
                         editor.putString("loginName", username);
                         editor.apply();
-
-                        Log.d("NAMER", "This is the name -> " + username + "<-");
-
-//                    mSharedPreferences = getApplicationContext().getSharedPreferences("loginName", Context.MODE_PRIVATE);
-//                    String name = mSharedPreferences.getString("loginName", "default");
-//                    String newLocation;
-//
-//                    Log.d("NAMER", "This is the name -> " + name + "<-");
 
 //                  https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                  Sending extras bc if I changed the function things would break
@@ -91,17 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     mLoginVerify.setText("Username/Password are incorrect");
                 }
-
-
-//                if (password.length() < 4) {
-////                    Log.d("Left blank", "Enter password");
-//                    mLoginVerify.setText("Password must be longer than 4 characters");
-//                } else {
-////                    Log.d("UNIQUE", "Username/Password dne");
-//
-//                }
-
-
             }
         });
 

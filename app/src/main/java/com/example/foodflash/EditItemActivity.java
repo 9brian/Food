@@ -18,4 +18,18 @@ public class EditItemActivity extends AppCompatActivity {
         Intent intent = new Intent(context, EditItemActivity.class);
         return intent;
     }
+
+
+//    private void refreshMenu(){
+//        mMenuItemList = mItemDAO.getMenuItems();
+//        if(!mMenuItemList.isEmpty()){
+//            StringBuilder sb = new StringBuilder();
+//            for(Item item : mMenuItemList){
+//                sb.append(item.toString());
+//            }
+//            title.setText(sb.toString());
+//        } else {
+//            title.setText("hey");
+//        }
+//    }
 }
