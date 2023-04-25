@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "dc90539e1db4b8f647242df80830413c",
+    "identityHash": "6f77f3906f7fc3d46dad568ec5cc977e",
     "entities": [
       {
         "tableName": "user_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserName` TEXT, `mPassWord` TEXT, `mDiscountId` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserName` TEXT, `mPassWord` TEXT, `mDiscountId` TEXT, `mIsAdmin` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "mUserId",
@@ -29,6 +29,12 @@
           {
             "fieldPath": "mDiscountId",
             "columnName": "mDiscountId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mIsAdmin",
+            "columnName": "mIsAdmin",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -41,12 +47,50 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "item_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mItemId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mItemName` TEXT, `mItemIngredients` TEXT, `mItemPrice` REAL)",
+        "fields": [
+          {
+            "fieldPath": "mItemId",
+            "columnName": "mItemId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mItemName",
+            "columnName": "mItemName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mItemIngredients",
+            "columnName": "mItemIngredients",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mItemPrice",
+            "columnName": "mItemPrice",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mItemId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dc90539e1db4b8f647242df80830413c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6f77f3906f7fc3d46dad568ec5cc977e')"
     ]
   }
 }
