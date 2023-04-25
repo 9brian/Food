@@ -14,7 +14,7 @@
         android:gravity="center"
         android:scrollbars="vertical"
         android:text="@string/foodflash_title_textview_signup"
-        android:textSize="10sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

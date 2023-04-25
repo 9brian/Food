@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.foodflash.User;
 
 @Database(entities = {User.class}, version = 1)
+// To add versions, device managaer, arrow, wipe data
 public abstract class AppDataBase extends RoomDatabase {
     public static final String DATABASE_NAME = "User.db";
     public static final String USER_TABLE = "user_table";

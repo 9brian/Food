@@ -76,6 +76,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+//    private void refreshDisplay(){
+//        mGymLogList = mGymLogDAO.getGymLogs();
+//        if (! mGymLogList.isEmpty()){
+//            StringBuilder sb = new StrinBuilder();
+//            for(GymLog log : mGymLogList){
+//                sb.append(log.toString());
+//            }
+//        }
+//        else{
+//            mMainDisplay.setText("");
+//        }
+//    }
+
     public static Intent getIntent(Context context){
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
