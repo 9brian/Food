@@ -12,6 +12,21 @@
         android:theme="@style/Theme.FoodFlash"
         tools:targetApi="31">
         <activity
+            android:name=".AddItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AllUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminPage"
+            android:exported="false" />
+        <activity
             android:name=".ProfilePage"
             android:exported="false" />
         <activity
