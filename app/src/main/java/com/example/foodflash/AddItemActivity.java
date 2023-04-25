@@ -28,7 +28,6 @@ public class AddItemActivity extends AppCompatActivity {
     Button mCreateButton;
 
     ItemDAO mItemDAO;
-    List<Item> mMenuItemList;
 
     ActivityAddItemBinding binding;
 
@@ -54,6 +53,7 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 submitMenuItem();
+                // Create Dialog to confirm item has been entered
             }
         });
     }
