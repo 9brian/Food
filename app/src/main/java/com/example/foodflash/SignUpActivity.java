@@ -125,19 +125,19 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }
 
-                // Manually delete entries
-                if(mUsername.getText().toString().equals("DeleteMyAccount")){
-                    String hardCodedString = "admin2";
-                    deleter = mUserDAO.getUserByName(hardCodedString);
-
-                    if(!uniqueUsername(hardCodedString)){
-                        Log.d("DELETE?", deleter.toString());
-                        mUserDAO.delete(deleter);
-                    }
-                    else{
-                        Log.d("DELETE", deleter.toString());
-                    }
-                }
+//                // Manually delete entries
+//                if(mUsername.getText().toString().equals("DeleteMyAccount")){
+//                    String hardCodedString = "admin2";
+//                    deleter = mUserDAO.getUserByName(hardCodedString);
+//
+//                    if(!uniqueUsername(hardCodedString)){
+//                        Log.d("DELETE?", deleter.toString());
+//                        mUserDAO.delete(deleter);
+//                    }
+//                    else{
+//                        Log.d("DELETE", deleter.toString());
+//                    }
+//                }
 
                 refreshDisplay();
             }
