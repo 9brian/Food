@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.foodflash.Item;
+import com.example.foodflash.User;
 
 import java.util.List;
 
@@ -24,4 +25,10 @@ public interface ItemDAO {
 
     @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE + " ORDER BY mItemId desc")
     List<Item> getMenuItems();
+
+    @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE + " WHERE mItemName = :itemName")
+    Item getItemByName(String itemName);
+
+    @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE)
+    Item getAll();
 }

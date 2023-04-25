@@ -52,7 +52,7 @@ public class AdminPage extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AllUserActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DeleteItemActivity.class);
                 startActivity(intent);
             }
         });
