@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(view);
 
+//        Uncomment if delete account breaks again
+//        mSharedPreferences = getApplicationContext().getSharedPreferences("loginName", Context.MODE_PRIVATE);
+//        mSharedPreferences.edit().clear().apply();
+
         mTitle = mActivityMainBinding.titleId;
         mLoginButton = mActivityMainBinding.loginButton;
         mSignUpButton = mActivityMainBinding.signupButton;
