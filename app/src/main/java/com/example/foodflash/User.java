@@ -7,6 +7,7 @@ import com.example.foodflash.DB.AppDataBase;
 
 @Entity(tableName = AppDataBase.USER_TABLE)
 public class User {
+    // This should work so far
     @PrimaryKey(autoGenerate = true)
     private int mUserId;
 
