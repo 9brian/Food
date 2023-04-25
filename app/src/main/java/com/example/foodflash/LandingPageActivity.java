@@ -96,7 +96,10 @@ public class LandingPageActivity extends AppCompatActivity {
         mAdminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                Intent newIntent = AdminPage.getIntent(getApplicationContext());
+//                startActivity(newIntent);
+                Intent i = AdminPage.getIntent(getApplicationContext());
+                startActivity(i);
             }
         });
 
