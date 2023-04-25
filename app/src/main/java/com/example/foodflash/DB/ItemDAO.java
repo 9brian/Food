@@ -3,9 +3,12 @@ package com.example.foodflash.DB;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.foodflash.Item;
+
+import java.util.List;
 
 @Dao
 public interface ItemDAO {
@@ -18,4 +21,7 @@ public interface ItemDAO {
 
     @Delete
     void delete(Item item);
+
+    @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE + " ORDER BY mItemId desc")
+    List<Item> getMenuItems();
 }

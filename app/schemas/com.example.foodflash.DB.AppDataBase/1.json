@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6f77f3906f7fc3d46dad568ec5cc977e",
+    "identityHash": "f49373fb4b2acd9048b9337165414ba3",
     "entities": [
       {
         "tableName": "user_table",
@@ -50,7 +50,7 @@
       },
       {
         "tableName": "item_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mItemId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mItemName` TEXT, `mItemIngredients` TEXT, `mItemPrice` REAL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mItemId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mItemName` TEXT, `mItemDescription` TEXT, `mItemPrice` REAL)",
         "fields": [
           {
             "fieldPath": "mItemId",
@@ -65,8 +65,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "mItemIngredients",
-            "columnName": "mItemIngredients",
+            "fieldPath": "mItemDescription",
+            "columnName": "mItemDescription",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -90,7 +90,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6f77f3906f7fc3d46dad568ec5cc977e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f49373fb4b2acd9048b9337165414ba3')"
     ]
   }
 }

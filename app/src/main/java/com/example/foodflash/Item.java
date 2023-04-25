@@ -11,12 +11,12 @@ public class Item {
     private int mItemId;
 
     private String mItemName;
-    private String mItemIngredients;
+    private String mItemDescription;
     private Double mItemPrice;
 
-    public Item(String itemName, String itemIngredients, Double itemPrice) {
+    public Item(String itemName, String itemDescription, Double itemPrice) {
         mItemName = itemName;
-        mItemIngredients = itemIngredients;
+        mItemDescription = itemDescription;
         mItemPrice = itemPrice;
     }
 
@@ -24,7 +24,7 @@ public class Item {
     public String toString() {
         return "ItemId: " +  mItemId + "\n" +
                 "ItemName: " + mItemName + '\n' +
-                "Ingredients: " + mItemIngredients + '\n' +
+                "Description: " + mItemDescription + '\n' +
                 "Price: " + mItemPrice + '\n' +
                 "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=" + "\n";
     }
@@ -45,12 +45,12 @@ public class Item {
         mItemName = itemName;
     }
 
-    public String getItemIngredients() {
-        return mItemIngredients;
+    public String getItemDescription() {
+        return mItemDescription;
     }
 
-    public void setItemIngredients(String itemIngredients) {
-        mItemIngredients = itemIngredients;
+    public void setItemDescription(String itemDescription) {
+        mItemDescription = itemDescription;
     }
 
     public Double getItemPrice() {
