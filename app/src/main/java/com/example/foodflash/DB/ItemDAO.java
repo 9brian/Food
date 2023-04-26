@@ -30,5 +30,5 @@ public interface ItemDAO {
     Item getItemByName(String itemName);
 
     @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE)
-    Item getAll();
+    Item getAllItems();
 }
