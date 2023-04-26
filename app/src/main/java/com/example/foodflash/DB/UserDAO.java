@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.foodflash.Item;
 import com.example.foodflash.User;
 
 import java.util.List;
@@ -33,4 +34,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + AppDataBase.USER_TABLE + " WHERE mUserName = :userName")
     User getUserByName(String userName);
+
+    @Query("SELECT * FROM " + AppDataBase.USER_TABLE)
+    List<User> getAllUsers();
 }
