@@ -37,4 +37,11 @@ public interface UserDAO {
 
     @Query("SELECT * FROM " + AppDataBase.USER_TABLE)
     List<User> getAllUsers();
+
+    // Order History 6
+    // Cancel 7
+    // Search Menu 10
+    // Update Menu 10
+    // Discounts 12
+
 }

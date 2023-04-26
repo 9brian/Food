@@ -26,11 +26,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "UserId: " + mUserId + "\n" +
-                "username: " + mUserName + "\n" +
-                "password: " + mPassWord + "\n" +
-                "discountId" + mDiscountId + "\n" +
-                "mDiscountId" + mIsAdmin + "\n" +
+        return
+//                "UserId: " + mUserId + "\n" +
+                "Username: " + mUserName + "\n" +
+//                "password: " + mPassWord + "\n" +
+                "DiscountId" + mDiscountId + "\n" +
+                "Admin: " + mIsAdmin + "\n" +
                 "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=" + "\n";
     }
 

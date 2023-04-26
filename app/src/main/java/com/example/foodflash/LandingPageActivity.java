@@ -19,7 +19,7 @@ import com.example.foodflash.databinding.ActivityMainBinding;
 public class LandingPageActivity extends AppCompatActivity {
 
     TextView mGreeting;
-    Button mLandingButton;
+    Button mBrowseButton;
     Button mSearchButton;
     Button mHistoryButton;
     Button mCancelButton;
@@ -41,7 +41,7 @@ public class LandingPageActivity extends AppCompatActivity {
         setContentView(view);
 
         mGreeting = mActivityLandingPageBinding.beginLoginPage;
-        mLandingButton = mActivityLandingPageBinding.landingButton;
+        mBrowseButton = mActivityLandingPageBinding.landingButton;
         mSearchButton = mActivityLandingPageBinding.searchButton;
         mHistoryButton = mActivityLandingPageBinding.historyButton;
         mCancelButton = mActivityLandingPageBinding.cancelButton;
@@ -65,10 +65,11 @@ public class LandingPageActivity extends AppCompatActivity {
             mAdminButton.setVisibility(View.INVISIBLE);
         }
 
-        mLandingButton.setOnClickListener(new View.OnClickListener() {
+        mBrowseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = BrowseMenuActivity.getIntent(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -98,8 +99,8 @@ public class LandingPageActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Intent newIntent = AdminPage.getIntent(getApplicationContext());
 //                startActivity(newIntent);
-                Intent i = AdminPage.getIntent(getApplicationContext());
-                startActivity(i);
+                Intent intent2 = AdminPage.getIntent(getApplicationContext());
+                startActivity(intent2);
             }
         });
 

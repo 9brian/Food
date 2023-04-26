@@ -51,7 +51,7 @@ public class AllUserActivity extends AppCompatActivity {
             mDisplayAllUsers.setText(sb.toString());
         }
         else{
-            mDisplayAllUsers.setText("");
+            mDisplayAllUsers.setText("No users yet! Time to gain some popularity.");
         }
     }
 
