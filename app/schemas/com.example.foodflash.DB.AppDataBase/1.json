@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f49373fb4b2acd9048b9337165414ba3",
+    "identityHash": "04ec45826417b1655e7a34c25fca2149",
     "entities": [
       {
         "tableName": "user_table",
@@ -85,12 +85,44 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "discount_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDiscountId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mDiscountCode` TEXT, `mDiscountPercentage` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "mDiscountId",
+            "columnName": "mDiscountId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDiscountCode",
+            "columnName": "mDiscountCode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDiscountPercentage",
+            "columnName": "mDiscountPercentage",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mDiscountId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f49373fb4b2acd9048b9337165414ba3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '04ec45826417b1655e7a34c25fca2149')"
     ]
   }
 }
