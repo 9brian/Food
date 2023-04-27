@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "04ec45826417b1655e7a34c25fca2149",
+    "identityHash": "e47152485618ad6e5ab2bddda113ae2a",
     "entities": [
       {
         "tableName": "user_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserName` TEXT, `mPassWord` TEXT, `mDiscountId` TEXT, `mIsAdmin` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserName` TEXT, `mPassWord` TEXT, `mDiscountId` INTEGER NOT NULL, `mIsAdmin` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "mUserId",
@@ -29,8 +29,8 @@
           {
             "fieldPath": "mDiscountId",
             "columnName": "mDiscountId",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "mIsAdmin",
@@ -88,7 +88,7 @@
       },
       {
         "tableName": "discount_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDiscountId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mDiscountCode` TEXT, `mDiscountPercentage` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDiscountId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mDiscountCode` TEXT, `mDiscountPercentage` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "mDiscountId",
@@ -105,8 +105,8 @@
           {
             "fieldPath": "mDiscountPercentage",
             "columnName": "mDiscountPercentage",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "REAL",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -122,7 +122,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '04ec45826417b1655e7a34c25fca2149')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e47152485618ad6e5ab2bddda113ae2a')"
     ]
   }
 }

@@ -11,20 +11,21 @@ public class Discount {
     private int mDiscountId;
 
     private String mDiscountCode;
-    private String mDiscountPercentage;
+    private double mDiscountPercentage;
 
-    public Discount(String discountCode, String discountPercentage) {
+    public Discount(String discountCode, double discountPercentage) {
         mDiscountCode = discountCode;
-        mDiscountPercentage = discountPercentage;
+        mDiscountPercentage = discountPercentage * 100.0;
     }
 
     @Override
     public String toString() {
         return
-                "DiscountId: " + mDiscountId + "\n" +
-                "DiscountCode: " + mDiscountCode + "\n" +
-                "DiscountPercentage: " + mDiscountPercentage + "\n"
-                        + "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=" + "\n";
+                "Congrats on your discount! Enjoy " + mDiscountPercentage + "% off your purchases.";
+//                "DiscountId: " + mDiscountId + "\n" +
+//                "DiscountCode: " + mDiscountCode + "\n" +
+//                "DiscountPercentage: " + mDiscountPercentage + "\n"
+//                        + "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=" + "\n";
     }
 
     public int getDiscountId() {
@@ -43,11 +44,12 @@ public class Discount {
         mDiscountCode = discountCode;
     }
 
-    public String getDiscountPercentage() {
+    public double getDiscountPercentage() {
         return mDiscountPercentage;
     }
 
-    public void setDiscountPercentage(String discountPercentage) {
+    public void setDiscountPercentage(double discountPercentage) {
         mDiscountPercentage = discountPercentage;
     }
+
 }
