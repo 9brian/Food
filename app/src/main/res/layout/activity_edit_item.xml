@@ -6,4 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".EditItemActivity">
 
+    <TextView
+        android:id="@+id/edit_item_title"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
+        android:gravity="center"
+        android:text="Editing Menu Items"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_item_name_edittext"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="152dp"
+        android:gravity="center"
+        android:hint="Search Item Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_item_description_edittext"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:hint="Change Item Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_item_name_edittext" />
+
+    <EditText
+        android:id="@+id/change_item_price_edittext"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="72dp"
+        android:gravity="center"
+        android:hint="Change Item Price"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_item_description_edittext" />
+
+    <Button
+        android:id="@+id/edit_item_button"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Edit Menu Item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/change_item_price_edittext"
+        app:layout_constraintVertical_bias="0.368" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

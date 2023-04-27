@@ -13,11 +13,11 @@ public class User {
 
     private String mUserName;
     private String mPassWord;
-    private String mDiscountId;
+    private int mDiscountId;
 
     private boolean mIsAdmin;
 
-    public User(String userName, String passWord, String discountId, boolean isAdmin) {
+    public User(String userName, String passWord, int discountId, boolean isAdmin) {
         mUserName = userName;
         mPassWord = passWord;
         mDiscountId = discountId;
@@ -30,7 +30,7 @@ public class User {
 //                "UserId: " + mUserId + "\n" +
                 "Username: " + mUserName + "\n" +
 //                "password: " + mPassWord + "\n" +
-                "DiscountId" + mDiscountId + "\n" +
+                "DiscountId: " + mDiscountId + "\n" +
                 "Admin: " + mIsAdmin + "\n" +
                 "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=" + "\n";
     }
@@ -59,11 +59,11 @@ public class User {
         mPassWord = passWord;
     }
 
-    public String getDiscountId() {
+    public int getDiscountId() {
         return mDiscountId;
     }
 
-    public void setDiscountId(String discountId) {
+    public void setDiscountId(int discountId) {
         mDiscountId = discountId;
     }
 

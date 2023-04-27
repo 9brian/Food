@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f49373fb4b2acd9048b9337165414ba3",
+    "identityHash": "e47152485618ad6e5ab2bddda113ae2a",
     "entities": [
       {
         "tableName": "user_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserName` TEXT, `mPassWord` TEXT, `mDiscountId` TEXT, `mIsAdmin` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mUserId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mUserName` TEXT, `mPassWord` TEXT, `mDiscountId` INTEGER NOT NULL, `mIsAdmin` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "mUserId",
@@ -29,8 +29,8 @@
           {
             "fieldPath": "mDiscountId",
             "columnName": "mDiscountId",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "mIsAdmin",
@@ -85,12 +85,44 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "discount_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mDiscountId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mDiscountCode` TEXT, `mDiscountPercentage` REAL NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mDiscountId",
+            "columnName": "mDiscountId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mDiscountCode",
+            "columnName": "mDiscountCode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDiscountPercentage",
+            "columnName": "mDiscountPercentage",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "mDiscountId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f49373fb4b2acd9048b9337165414ba3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e47152485618ad6e5ab2bddda113ae2a')"
     ]
   }
 }

@@ -76,7 +76,8 @@ public class LandingPageActivity extends AppCompatActivity {
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = SearchItemActivity.getIntent(getApplicationContext());
+                startActivity(intent);
             }
         });
 

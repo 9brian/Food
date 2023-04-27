@@ -226,7 +226,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void submitUserInfo(){
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
-        String discounter = "1";
+        int discounter = 1;
         boolean isAdmin = false;
 
         User user = new User(username, password, discounter, isAdmin);
@@ -237,7 +237,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void submitAdminInfo(){
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
-        String discounter = "1";
+        int discounter = 1;
         boolean isAdmin = true;
 
         User admin = new User(username, password, discounter, isAdmin);

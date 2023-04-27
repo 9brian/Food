@@ -64,6 +64,14 @@ public class ProfilePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+            //      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+            //      Manual intent bc changing the function would break the activity
+
+                Intent intent =  new Intent(getApplicationContext(), DiscountActivity.class);
+                intent.putExtra("name", name);
+                startActivity(intent);
+//                Intent intent = DiscountActivity.getIntent(getApplicationContext());
+//                startActivity(intent);
             }
         });
 
