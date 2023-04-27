@@ -41,7 +41,4 @@ public interface UserDAO {
     // Order History 6
     // Cancel 7
     // Search Menu 10
-    // Update Menu 10
-    // Discounts 12
-
 }
