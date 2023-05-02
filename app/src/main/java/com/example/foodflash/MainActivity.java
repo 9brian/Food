@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             mDiscountDAO.insert(defaultDiscount);
         }
         if (!discountExists("inception")) {
-            Discount inceptionDiscount = new Discount("inception", 0.05);
+            Discount inceptionDiscount = new Discount("inception", 0.5);
             mDiscountDAO.insert(inceptionDiscount);
         }
 

@@ -15,7 +15,7 @@ public class Discount {
 
     public Discount(String discountCode, double discountPercentage) {
         mDiscountCode = discountCode;
-        mDiscountPercentage = discountPercentage * 100.0;
+        mDiscountPercentage = discountPercentage * 10.0;
     }
 
     @Override

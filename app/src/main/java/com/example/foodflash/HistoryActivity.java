@@ -91,7 +91,9 @@ public class HistoryActivity extends AppCompatActivity {
 
             }
 
-            double discountOff = discountPercentage * subtotal;
+            double discountPercentageFormat = discountPercentage/100.0;
+            double discountOff = discountPercentageFormat * subtotal;
+
             stringBuilt.append("=-=-=-=-=-=-=-=-=--=-=-=-=-=").append("\n");
             stringBuilt.append("Order Summary").append("\n");
             stringBuilt.append("Subtotal: $").append(subtotal).append("\n");
