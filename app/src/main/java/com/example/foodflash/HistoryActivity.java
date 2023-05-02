@@ -29,10 +29,7 @@ public class HistoryActivity extends AppCompatActivity {
     DiscountDAO mDiscountDAO;
 
     User getUser;
-    Discount getDiscount;
-
     List<Cart> userPurchases;
-    List<Cart> newUserPurchases;
     Item userItems;
 
     ActivityHistoryBinding binding;
@@ -70,7 +67,6 @@ public class HistoryActivity extends AppCompatActivity {
         Log.d("tag", userId + " " + discountId);
 
         refreshDisplay(userId, discountId);
-//        refreshTotal(discountId);
     }
 
     private void refreshDisplay(int userId, int discountIdentifier){
@@ -86,7 +82,7 @@ public class HistoryActivity extends AppCompatActivity {
             for(Cart purchases : userPurchases){
                 int itemId = purchases.getMenuId();
 
-                userItems = mItemDAO.getItemsByUserId(itemId);
+                userItems = mItemDAO.getItemsByItemId(itemId);
                 sb.append(userItems.getItemName() + "\n$" +
                         userItems.getItemPrice() + "\n" +
                         "=-=-=-=-=-=-=-=-=-=-=" + "\n");
@@ -114,42 +110,6 @@ public class HistoryActivity extends AppCompatActivity {
             mHistory.setText("No purchases yet! Time to scrounge some scrilla");
         }
     }
-
-    private void refreshTotal(int discountIdentifer){
-        newUserPurchases = mCartDAO.getItemsByUserId(discountIdentifer);
-        Double subtotal = 0.00;
-
-        Discount discount = mDiscountDAO.getDiscountById(discountIdentifer);
-        double discountPercentage = discount.getDiscountPercentage();
-
-
-
-        if (! newUserPurchases.isEmpty()){
-            StringBuilder sb = new StringBuilder();
-            for(Cart purchases : newUserPurchases){
-                int itemId = purchases.getMenuId();
-
-                userItems = mItemDAO.getItemsByUserId(itemId);
-//                subtotal += userItems.getItemPrice();
-                Log.d("tag",userItems.toString());
-                // Fetch discounts
-                // Show subtotal
-
-            }
-//            double discountOff = discountPercentage * subtotal;
-//            sb.append("Subtotal: $").append(subtotal).append("\n");
-//            sb.append("-$").append(discountOff).append("\n");
-//
-//            double total = 0.00;
-//            total = subtotal - discountOff;
-//            sb.append("Total: $").append(total).append("\n");
-//
-//            mTotal.setText(sb);
-//
-////            mHistory.setText(sb.toString());
-        }
-    }
-
 
     public static Intent getIntent(Context context){
         Intent intent = new Intent(context, HistoryActivity.class);

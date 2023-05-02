@@ -108,7 +108,13 @@ public class LandingPageActivity extends AppCompatActivity {
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = getIntent();
+                String name = i.getStringExtra("name");
 
+
+                Intent intent = new Intent(getApplicationContext(), CancelActivity.class);
+                intent.putExtra("name", name);
+                startActivity(intent);
             }
         });
 

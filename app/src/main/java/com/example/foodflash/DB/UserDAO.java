@@ -35,6 +35,5 @@ public interface UserDAO {
     @Query("SELECT * FROM " + AppDataBase.USER_TABLE)
     List<User> getAllUsers();
 
-    // Order History 6
     // Cancel 7
 }
