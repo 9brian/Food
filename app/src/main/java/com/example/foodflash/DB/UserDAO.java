@@ -22,9 +22,6 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
-//    All Users
-    @Query("SELECT * FROM " + AppDataBase.USER_TABLE)
-    List<User> getUsers();
 
 //    All users based on userId
     @Query("SELECT * FROM " + AppDataBase.USER_TABLE + " WHERE mUserId = :userId")
@@ -40,5 +37,4 @@ public interface UserDAO {
 
     // Order History 6
     // Cancel 7
-    // Search Menu 10
 }

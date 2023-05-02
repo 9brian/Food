@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- How to autofill an edittext -->
 <!--https://www.youtube.com/watch?v=JB3ETK5mh3c-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".SearchItemActivity">
 
@@ -14,8 +13,50 @@
         android:id="@+id/search_autocomplete"
         android:layout_width="300dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="528dp"
+        android:completionThreshold="1"
         android:hint="Search for an item"
-        android:completionThreshold="1" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.111" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/search_item_button"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_autocomplete"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <TextView
+        android:id="@+id/searched_item_textview"
+        android:layout_width="310dp"
+        android:layout_height="298dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_item_button"
+        app:layout_constraintVertical_bias="0.164" />
+
+    <Button
+        android:id="@+id/purchase_item_button"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Purchase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searched_item_textview"
+        app:layout_constraintVertical_bias="0.895" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

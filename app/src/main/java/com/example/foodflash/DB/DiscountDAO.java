@@ -23,4 +23,7 @@ public interface DiscountDAO {
 
     @Query("SELECT * FROM " + AppDataBase.DISCOUNT_TABLE + " WHERE mDiscountCode = :discountCode")
     Discount getDiscountByCode(String discountCode);
+
+    @Query("SELECT * FROM " + AppDataBase.DISCOUNT_TABLE + " WHERE mDiscountId = :discountId")
+    Discount getDiscountById(int discountId);
 }
