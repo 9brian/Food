@@ -38,6 +38,8 @@ public class SearchItemActivity extends AppCompatActivity {
     Item mItemFinder;
     Item heldItem;
 
+    Item mNewItem;
+
 
     CartDAO mCartDAO;
     UserDAO mUserDAO;
@@ -60,6 +62,8 @@ public class SearchItemActivity extends AppCompatActivity {
         purchaseItemButton = binding.purchaseItemButton;
 
 
+        mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
+                .allowMainThreadQueries().build().UserDAO();
         mItemDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().ItemDAO();
         mCartDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
@@ -97,18 +101,22 @@ public class SearchItemActivity extends AppCompatActivity {
                 String search = searchBar.getText().toString();
                 if (itemExists(search)){
                     heldItem = mItemDAO.getItemByName(search);
-                    Toast.makeText(SearchItemActivity.this, "Purchase not implemented", Toast.LENGTH_SHORT).show();
 
 //                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                Manual intent bc changing the function would break the activity
                     Intent i = getIntent();
                     String name = i.getStringExtra("name");
 
-                    Log.d("tagging", name);
-
                     if(findUser(name)){
-//                        Cart newCart = Cart();
-//                        mCartDAO.insert();
+                        mNewUser = mUserDAO.getUserByName(name);
+                        int mFoundId = mNewUser.getUserId();
+
+                        int mItemId = heldItem.getItemId();
+
+                        Cart newCart = new Cart(mFoundId, mItemId);
+                        mCartDAO.insert(newCart);
+//                        Log.d("tagging", newCart.toString());
+                        Toast.makeText(SearchItemActivity.this, "Purchase was successful", Toast.LENGTH_SHORT).show();
                     } else{
                         Toast.makeText(SearchItemActivity.this, "This shouldn't pop up", Toast.LENGTH_SHORT).show();
                     }
@@ -132,7 +140,6 @@ public class SearchItemActivity extends AppCompatActivity {
 
     private boolean findUser(String userName){
         mFoundUser = mUserDAO.getUserByName(userName);
-
         return mFoundUser != null;
     }
 
