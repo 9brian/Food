@@ -76,7 +76,16 @@ public class LandingPageActivity extends AppCompatActivity {
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = SearchItemActivity.getIntent(getApplicationContext());
+//                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                Manual intent bc changing the function would break the activity
+                Intent i = getIntent();
+                String name = i.getStringExtra("name");
+
+//                Intent intent = SearchItemActivity.getIntent(getApplicationContext());
+//                startActivity(intent);
+
+                Intent intent = new Intent(getApplicationContext(), SearchItemActivity.class);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });

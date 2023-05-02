@@ -6,14 +6,18 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodflash.DB.AppDataBase;
+import com.example.foodflash.DB.CartDAO;
 import com.example.foodflash.DB.ItemDAO;
+import com.example.foodflash.DB.UserDAO;
 import com.example.foodflash.databinding.ActivitySearchItemBinding;
 
 import java.util.ArrayList;
@@ -34,6 +38,12 @@ public class SearchItemActivity extends AppCompatActivity {
     Item mItemFinder;
     Item heldItem;
 
+
+    CartDAO mCartDAO;
+    UserDAO mUserDAO;
+    User mFoundUser;
+    User mNewUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +62,8 @@ public class SearchItemActivity extends AppCompatActivity {
 
         mItemDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().ItemDAO();
+        mCartDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
+                .allowMainThreadQueries().build().CartDAO();
 
         menuItems = mItemDAO.getMenuItems();
 
@@ -79,6 +91,36 @@ public class SearchItemActivity extends AppCompatActivity {
             }
         });
 
+        purchaseItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String search = searchBar.getText().toString();
+                if (itemExists(search)){
+                    heldItem = mItemDAO.getItemByName(search);
+                    Toast.makeText(SearchItemActivity.this, "Purchase not implemented", Toast.LENGTH_SHORT).show();
+
+//                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                Manual intent bc changing the function would break the activity
+                    Intent i = getIntent();
+                    String name = i.getStringExtra("name");
+
+                    Log.d("tagging", name);
+
+                    if(findUser(name)){
+//                        Cart newCart = Cart();
+//                        mCartDAO.insert();
+                    } else{
+                        Toast.makeText(SearchItemActivity.this, "This shouldn't pop up", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+                else{
+                    Toast.makeText(SearchItemActivity.this, "Item does not exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
     }
 
@@ -86,6 +128,12 @@ public class SearchItemActivity extends AppCompatActivity {
         mItemFinder = mItemDAO.getItemByName(itemName);
         // Returns true if user does exist
         return mItemFinder != null;
+    }
+
+    private boolean findUser(String userName){
+        mFoundUser = mUserDAO.getUserByName(userName);
+
+        return mFoundUser != null;
     }
 
     public static Intent getIntent(Context context){
