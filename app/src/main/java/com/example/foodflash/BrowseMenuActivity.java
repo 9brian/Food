@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import com.example.foodflash.DB.AppDataBase;
@@ -31,6 +32,8 @@ public class BrowseMenuActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mDisplayMenu = binding.menuItemsTextview;
+
+        mDisplayMenu.setMovementMethod(new ScrollingMovementMethod());
 
         mItemDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().ItemDAO();

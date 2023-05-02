@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import com.example.foodflash.DB.AppDataBase;
 import com.example.foodflash.DB.DiscountDAO;
+import com.example.foodflash.DB.ItemDAO;
 import com.example.foodflash.DB.UserDAO;
 import com.example.foodflash.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     // Adding a comment
 
-    int count = 0;
     TextView mTitle;
     Button mLoginButton;
     Button mSignUpButton;
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     UserDAO mUserDAO;
     User mSpecificUser;
 
+    ItemDAO mItemDAO;
     Item mSpecificItem;
 
     DiscountDAO mDiscountDAO;
@@ -45,10 +46,14 @@ public class MainActivity extends AppCompatActivity {
         View view = mActivityMainBinding.getRoot();
         setContentView(view);
 
+
+
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
         mDiscountDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().DiscountDAO();
+        mItemDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
+                .allowMainThreadQueries().build().ItemDAO();
 
 
         // Pre-existing Users
@@ -66,12 +71,35 @@ public class MainActivity extends AppCompatActivity {
             Discount defaultDiscount = new Discount("default", 0.0);
             mDiscountDAO.insert(defaultDiscount);
         }
+        if (!discountExists("inception")) {
+            Discount inceptionDiscount = new Discount("inception", 0.05);
+            mDiscountDAO.insert(inceptionDiscount);
+        }
 
         // Pre-existing recipes
+        if(!itemExists("Pizza")){
+            Item pizzaItem = new Item("Pizza",
+                    "This pizza was made from the best tomatoes found in the #338 tomato field.", 12.00);
+            mItemDAO.insert(pizzaItem);
+        }
+        if(!itemExists("Chicken alfredo")){
+            Item chicken_alfredo = new Item("Chicken alfredo",
+                    "Chicken Alfredo, the best chicken alfredo you can find anywhere in the world. " +
+                            "Topped with the best sauce anyone can find. ", 24.00);
+            mItemDAO.insert(chicken_alfredo);
+        }
+        if(!itemExists("Ramen")){
+            Item ramen = new Item("Ramen",
+                    "Ramen.", 1000.00);
+            mItemDAO.insert(ramen);
+        }
+        if(!itemExists("tacos")){
+            Item tacos = new Item("tacos",
+                    "3 chicken tacos, topped with salsa, cilantro, and onion.", 10.00);
+            mItemDAO.insert(tacos);
+        }
 
-
-
-        // Scroll ability on textview
+        // Type converter for decision
 
 
 
@@ -124,8 +152,9 @@ public class MainActivity extends AppCompatActivity {
         return mSpecificDiscount != null;
     }
 
-    private boolean itemExists(String item){
+    private boolean itemExists(String itemName){
 //        mSpecificDiscount = mDiscountDAO.getDiscountByCode(discount);
+        mSpecificItem = mItemDAO.getItemByName(itemName);
         return mSpecificItem != null;
     }
 

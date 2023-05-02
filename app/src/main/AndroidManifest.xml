@@ -22,19 +22,23 @@
             android:exported="false" />
         <activity
             android:name=".DiscountActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".BrowseMenuActivity"
             android:exported="false" />
         <activity
             android:name=".AddItemActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".EditItemActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".DeleteItemActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".AllUserActivity"
             android:exported="false" />
@@ -50,10 +54,12 @@
         <activity
             android:name=".SignUpActivity"
             android:exported="false"
-            android:fitsSystemWindows="true" />
+            android:fitsSystemWindows="true"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

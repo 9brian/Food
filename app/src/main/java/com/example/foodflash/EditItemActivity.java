@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -47,6 +48,7 @@ public class EditItemActivity extends AppCompatActivity {
         changeDescription = binding.editItemDescriptionEdittext;
         changePrice = binding.changeItemPriceEdittext;
         editButton = binding.editItemButton;
+
 
         mItemDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().ItemDAO();

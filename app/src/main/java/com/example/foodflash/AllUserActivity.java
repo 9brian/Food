@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -33,6 +34,8 @@ public class AllUserActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mDisplayAllUsers = binding.allUsersTextview;
+
+        mDisplayAllUsers.setMovementMethod(new ScrollingMovementMethod());
 
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();

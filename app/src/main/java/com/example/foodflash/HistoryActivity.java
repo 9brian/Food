@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -44,6 +45,8 @@ public class HistoryActivity extends AppCompatActivity {
 
         mHistory = binding.historyOrderTextview;
         mTotal = binding.totalOrderTextview;
+
+        mHistory.setMovementMethod(new ScrollingMovementMethod());
 
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
