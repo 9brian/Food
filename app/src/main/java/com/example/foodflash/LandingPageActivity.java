@@ -93,7 +93,15 @@ public class LandingPageActivity extends AppCompatActivity {
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                Manual intent bc changing the function would break the activity
+                Intent i = getIntent();
+                String name = i.getStringExtra("name");
 
+
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                intent.putExtra("name", name);
+                startActivity(intent);
             }
         });
 

@@ -113,7 +113,7 @@ public class SearchItemActivity extends AppCompatActivity {
 
                         int mItemId = heldItem.getItemId();
 
-                        Cart newCart = new Cart(mFoundId, mItemId);
+                        Cart newCart = new Cart(mItemId, mFoundId);
                         mCartDAO.insert(newCart);
 //                        Log.d("tagging", newCart.toString());
                         Toast.makeText(SearchItemActivity.this, "Purchase was successful", Toast.LENGTH_SHORT).show();
