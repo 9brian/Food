@@ -25,4 +25,7 @@ public interface CartDAO {
 
     @Query("SELECT * FROM " + AppDataBase.CART_TABLE + " WHERE mUserId = :userId")
     List<Cart> getItemsByUserId(int userId);
+
+    @Query("SELECT * FROM " + AppDataBase.CART_TABLE + " WHERE mUserId = :userId AND mMenuId = :menuId")
+    Cart getCartByUserMenu(int menuId, int userId);
 }

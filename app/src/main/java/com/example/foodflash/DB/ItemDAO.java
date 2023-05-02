@@ -6,9 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.foodflash.Cart;
 import com.example.foodflash.Item;
-import com.example.foodflash.User;
 
 import java.util.List;
 
@@ -34,5 +32,5 @@ public interface ItemDAO {
     Item getAllItems();
 
     @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE + " WHERE mItemId = :itemId")
-    Item getItemsByUserId(int itemId);
+    Item getItemsByItemId(int itemId);
 }
