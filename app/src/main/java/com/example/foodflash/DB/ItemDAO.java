@@ -28,9 +28,6 @@ public interface ItemDAO {
     @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE + " WHERE mItemName = :itemName")
     Item getItemByName(String itemName);
 
-    @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE)
-    Item getAllItems();
-
     @Query("SELECT * FROM " + AppDataBase.ITEM_TABLE + " WHERE mItemId = :itemId")
     Item getItemsByItemId(int itemId);
 }

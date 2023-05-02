@@ -27,7 +27,6 @@ public class ProfilePage extends AppCompatActivity {
     Button logOutButton;
 
     UserDAO mUserDAO;
-    List<User> mUserList;
     User deleteUser;
     User mSpecificUser;
 
@@ -70,8 +69,6 @@ public class ProfilePage extends AppCompatActivity {
                 Intent intent =  new Intent(getApplicationContext(), DiscountActivity.class);
                 intent.putExtra("name", name);
                 startActivity(intent);
-//                Intent intent = DiscountActivity.getIntent(getApplicationContext());
-//                startActivity(intent);
             }
         });
 
@@ -82,7 +79,6 @@ public class ProfilePage extends AppCompatActivity {
                 // How to create a dialog found here ^
                 AlertDialog newAlert = new AlertDialog.Builder(ProfilePage.this).create();
                 newAlert.setTitle("Are you sure you want to delete your account?");
-//                newAlert.setMessage("(Please don't)");
                 newAlert.setButton(newAlert.BUTTON_POSITIVE, "NO",
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -137,7 +133,6 @@ public class ProfilePage extends AppCompatActivity {
 
     private boolean uniqueUsername(String userName){
         mSpecificUser = mUserDAO.getUserByName(userName);
-
         return mSpecificUser == null;
     }
 

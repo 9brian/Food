@@ -59,12 +59,14 @@ public class LandingPageActivity extends AppCompatActivity {
 
         User mExistingUser = userFinder(name);
 
+        // Differentiate between admin and non-admin entities
         if(mExistingUser.isAdmin()){
             mAdminButton.setVisibility(View.VISIBLE);
         }else{
             mAdminButton.setVisibility(View.INVISIBLE);
         }
 
+        // Browse the menu
         mBrowseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,16 +75,14 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         });
 
+        // Search the menu
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
-//                Manual intent bc changing the function would break the activity
+//                Manual intent with extras bc changing the function would break the activity
                 Intent i = getIntent();
                 String name = i.getStringExtra("name");
-
-//                Intent intent = SearchItemActivity.getIntent(getApplicationContext());
-//                startActivity(intent);
 
                 Intent intent = new Intent(getApplicationContext(), SearchItemActivity.class);
                 intent.putExtra("name", name);
@@ -90,10 +90,11 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         });
 
+        // Check cart history
         mHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                Manual intent bc changing the function would break the activity
                 Intent i = getIntent();
                 String name = i.getStringExtra("name");
@@ -105,6 +106,7 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         });
 
+        // Cancel previous orders
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,21 +120,21 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         });
 
+        // Admin Button to admin page
         mAdminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent newIntent = AdminPage.getIntent(getApplicationContext());
-//                startActivity(newIntent);
                 Intent intent2 = AdminPage.getIntent(getApplicationContext());
                 startActivity(intent2);
             }
         });
 
+        // Profile "button"
         mProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
-//      Manual intent bc changing the function would break the activity
+//                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                Manual intent bc changing the function would break the activity
                 Intent intent = getIntent();
                 String name = intent.getStringExtra("name");
                 Log.d("profile", "reroute");
@@ -146,7 +148,6 @@ public class LandingPageActivity extends AppCompatActivity {
 
     private User userFinder(String userName){
         mFoundUser = mUserDAO.getUserByName(userName);
-        // Returns true if user does not exist
         return mFoundUser;
     }
 

@@ -77,6 +77,8 @@ public class CancelActivity extends AppCompatActivity {
         String name = intent.getStringExtra("name");
 
 
+//        https://www.youtube.com/watch?v=JB3ETK5mh3c
+//        Used this to find a way to have autocomplete based on db
         if (findUser(name)){
             mUser = mUserDAO.getUserByName(name);
             int userId = mUser.getUserId();
@@ -111,11 +113,6 @@ public class CancelActivity extends AppCompatActivity {
                         } else {
                             confirmItem.setText(name + " does not have " + itemName + " in their cart");
                         }
-
-
-//                        Log.d("tag", heldItem.toString());
-
-
                     }
                     else{
                         confirmItem.setText("Item does not exist.");
@@ -146,21 +143,16 @@ public class CancelActivity extends AppCompatActivity {
                             if (cartExists(userId, menuId)){
                                 mNewCart = mCartDAO.getCartByUserMenu(menuId, userId);
 
-//                            Log.d("tag", mNewCart.toString());
-//                            Cart newCart = new Cart(mItemId, mFoundId);
                                 mCartDAO.delete(mNewCart);
                                 confirmItem.setText("");
-//                        Log.d("tagging", newCart.toString());
                                 Toast.makeText(CancelActivity.this, "Cancel was successful", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(CancelActivity.this, name + " does not have " + item + " in their cart", Toast.LENGTH_SHORT).show();
                             }
 
-
                         } else{
                             Toast.makeText(CancelActivity.this, "This shouldn't pop up", Toast.LENGTH_SHORT).show();
                         }
-
                     } else {
                         Toast.makeText(CancelActivity.this, "This shouldn't pop up", Toast.LENGTH_SHORT).show();
                     }
@@ -177,13 +169,11 @@ public class CancelActivity extends AppCompatActivity {
 
     private boolean cartExists(int userId, int menuId){
         mCartFinder = mCartDAO.getCartByUserMenu(menuId, userId);
-        // Returns true if user does exist
         return mCartFinder != null;
     }
 
     private boolean itemExists(String itemName){
         mItemFinder = mItemDAO.getItemByName(itemName);
-        // Returns true if user does exist
         return mItemFinder != null;
     }
 

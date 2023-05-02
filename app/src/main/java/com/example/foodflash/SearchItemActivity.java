@@ -71,6 +71,8 @@ public class SearchItemActivity extends AppCompatActivity {
 
         menuItems = mItemDAO.getMenuItems();
 
+        //    https://www.youtube.com/watch?v=JB3ETK5mh3c
+        //    Used this to find a way to have autocomplete based on db
         List<String> items = new ArrayList<>();
         for(Item item : menuItems){
             String itemName = item.getItemName();
@@ -80,6 +82,7 @@ public class SearchItemActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         searchBar.setAdapter(adapter);
 
+        // Search for the item
         fetchItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +98,7 @@ public class SearchItemActivity extends AppCompatActivity {
             }
         });
 
+        // Purchase button
         purchaseItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,8 +106,8 @@ public class SearchItemActivity extends AppCompatActivity {
                 if (itemExists(search)){
                     heldItem = mItemDAO.getItemByName(search);
 
-//                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
-//                Manual intent bc changing the function would break the activity
+//                  https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                  Manual intent bc changing the function would break the activity
                     Intent i = getIntent();
                     String name = i.getStringExtra("name");
 
@@ -115,12 +119,10 @@ public class SearchItemActivity extends AppCompatActivity {
 
                         Cart newCart = new Cart(mItemId, mFoundId);
                         mCartDAO.insert(newCart);
-//                        Log.d("tagging", newCart.toString());
                         Toast.makeText(SearchItemActivity.this, "Purchase was successful", Toast.LENGTH_SHORT).show();
                     } else{
                         Toast.makeText(SearchItemActivity.this, "This shouldn't pop up", Toast.LENGTH_SHORT).show();
                     }
-
 
                 }
                 else{
@@ -134,7 +136,6 @@ public class SearchItemActivity extends AppCompatActivity {
 
     private boolean itemExists(String itemName){
         mItemFinder = mItemDAO.getItemByName(itemName);
-        // Returns true if user does exist
         return mItemFinder != null;
     }
 

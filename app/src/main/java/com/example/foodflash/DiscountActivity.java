@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodflash.DB.AppDataBase;
 import com.example.foodflash.DB.DiscountDAO;
@@ -56,9 +57,7 @@ public class DiscountActivity extends AppCompatActivity {
                 String name = intent.getStringExtra("name");
 
                 User foundUser = mUserDAO.getUserByName(name);
-                Log.d("foundUser", foundUser.toString());
 
-//                Log.d("profile", name);
                 if(searchForDiscount(search)){
                     mSpecificDiscount = mDiscountDAO.getDiscountByCode(search);
                     resultSearch.setText(mSpecificDiscount.toString());
@@ -67,6 +66,7 @@ public class DiscountActivity extends AppCompatActivity {
                     foundUser.setDiscountId(discountId);
 
                     mUserDAO.update(foundUser);
+                    Toast.makeText(DiscountActivity.this, "Your discount has been updated", Toast.LENGTH_SHORT).show();
 
                 } else {
                     resultSearch.setText("No discounts found!");
@@ -74,12 +74,12 @@ public class DiscountActivity extends AppCompatActivity {
             }
         });
 
+        // Manual insertion of discounts
         searchDiscountButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 String search = discountSearch.getText().toString();
                 Discount newDiscount = new Discount(search, 0.5);
-                Log.d("tagging", "should work");
                 mDiscountDAO.insert(newDiscount);
                 return false;
             }
@@ -88,7 +88,6 @@ public class DiscountActivity extends AppCompatActivity {
 
     }
     private boolean searchForDiscount(String discountCode){
-//        mSpecificDiscount =
         return mDiscountDAO.getDiscountByCode(discountCode) != null;
     }
     public static Intent getIntent(Context context){

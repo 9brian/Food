@@ -37,7 +37,6 @@ public class AllUserActivity extends AppCompatActivity {
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
 
-//        Log.d("t", mUserDAO.getAllUsers().toString());
         refreshDisplay();
     }
 

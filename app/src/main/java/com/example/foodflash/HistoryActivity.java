@@ -64,8 +64,6 @@ public class HistoryActivity extends AppCompatActivity {
         int userId = getUser.getUserId();
         int discountId = getUser.getDiscountId();
 
-        Log.d("tag", userId + " " + discountId);
-
         refreshDisplay(userId, discountId);
     }
 
@@ -87,11 +85,8 @@ public class HistoryActivity extends AppCompatActivity {
                         userItems.getItemPrice() + "\n" +
                         "=-=-=-=-=-=-=-=-=-=-=" + "\n");
                 subtotal += userItems.getItemPrice();
-                // Fetch discounts
-                // Show subtotal
 
             }
-            Log.d("tag", String.valueOf(subtotal));
 
             double discountOff = discountPercentage * subtotal;
             stringBuilt.append("=-=-=-=-=-=-=-=-=--=-=-=-=-=").append("\n");
