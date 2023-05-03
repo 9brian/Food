@@ -1,10 +1,17 @@
 package com.example.foodflash;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.room.Room;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +37,7 @@ public class LandingPageActivity extends AppCompatActivity {
     User mFoundUser;
 
     ActivityLandingPageBinding mActivityLandingPageBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +58,13 @@ public class LandingPageActivity extends AppCompatActivity {
 
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
+
+
+
+        // create notification
+
+
+
 
 //      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //      Manual intent bc changing the function would break the activity
@@ -155,4 +170,6 @@ public class LandingPageActivity extends AppCompatActivity {
         Intent intent = new Intent(context, LandingPageActivity.class);
         return intent;
     }
+
+
 }
