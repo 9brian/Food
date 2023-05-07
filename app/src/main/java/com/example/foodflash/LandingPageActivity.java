@@ -60,16 +60,11 @@ public class LandingPageActivity extends AppCompatActivity {
                 .allowMainThreadQueries().build().UserDAO();
 
 
-
-        // create notification
-
-
-
-
 //      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //      Manual intent bc changing the function would break the activity
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+//        Intent intent = getIntent();
+//        String name = intent.getStringExtra("name");
+        String name = getExtra();
         mGreeting.setText("Welcome to FoodFlash, " + name);
 
         User mExistingUser = userFinder(name);
@@ -96,11 +91,15 @@ public class LandingPageActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                Manual intent with extras bc changing the function would break the activity
-                Intent i = getIntent();
-                String name = i.getStringExtra("name");
+//                Intent i = getIntent();
+//                String name = i.getStringExtra("name");
 
-                Intent intent = new Intent(getApplicationContext(), SearchItemActivity.class);
-                intent.putExtra("name", name);
+//                Intent intent = new Intent(getApplicationContext(), SearchItemActivity.class);
+//                intent.putExtra("name", name);
+
+                String name = getExtra();
+
+                Intent intent = SearchItemActivity.getIntent(getApplicationContext(), name);
                 startActivity(intent);
             }
         });
@@ -111,12 +110,13 @@ public class LandingPageActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                Manual intent bc changing the function would break the activity
-                Intent i = getIntent();
-                String name = i.getStringExtra("name");
+//                Intent i = getIntent();
+//                String name = i.getStringExtra("name");
+                String name = getExtra();
 
-
-                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                intent.putExtra("name", name);
+//                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+//                intent.putExtra("name", name);
+                Intent intent = HistoryActivity.getIntent(getApplicationContext(), name);
                 startActivity(intent);
             }
         });
@@ -125,12 +125,12 @@ public class LandingPageActivity extends AppCompatActivity {
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = getIntent();
-                String name = i.getStringExtra("name");
+                String name = getExtra();
 
 
-                Intent intent = new Intent(getApplicationContext(), CancelActivity.class);
-                intent.putExtra("name", name);
+//                Intent intent = new Intent(getApplicationContext(), CancelActivity.class);
+//                intent.putExtra("name", name);
+                Intent intent = CancelActivity.getIntent(getApplicationContext(), name);
                 startActivity(intent);
             }
         });
@@ -139,8 +139,8 @@ public class LandingPageActivity extends AppCompatActivity {
         mAdminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = AdminPage.getIntent(getApplicationContext());
-                startActivity(intent2);
+                Intent intent = AdminPage.getIntent(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -150,13 +150,14 @@ public class LandingPageActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                Manual intent bc changing the function would break the activity
-                Intent intent = getIntent();
-                String name = intent.getStringExtra("name");
-                Log.d("profile", "reroute");
+//                Intent intent = getIntent();
+//                String name = intent.getStringExtra("name");
+                String name = getExtra();
 
-                Intent intenter = new Intent(getApplicationContext(), ProfilePage.class);
-                intenter.putExtra("name", name);
-                startActivity(intenter);
+//                Intent intenter = new Intent(getApplicationContext(), ProfilePage.class);
+//                intenter.putExtra("name", name);
+                Intent intent = ProfilePage.getIntent(getApplicationContext(), name);
+                startActivity(intent);
             }
         });
     }
@@ -166,10 +167,15 @@ public class LandingPageActivity extends AppCompatActivity {
         return mFoundUser;
     }
 
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, LandingPageActivity.class);
+        intent.putExtra("name", username);
         return intent;
     }
 
-
+    public String getExtra(){
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        return name;
+    }
 }

@@ -60,8 +60,9 @@ public class ProfilePage extends AppCompatActivity {
 
 //        /https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //      Manual intent bc changing the function would break the activity
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+//        Intent intent = getIntent();
+//        String name = intent.getStringExtra("name");
+        String name = getExtra();
 
         mProfileUsername.setText(name);
         // Set up profile page
@@ -73,8 +74,9 @@ public class ProfilePage extends AppCompatActivity {
                 //      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
                 //      Manual intent bc changing the function would break the activity
 
-                Intent intent = new Intent(getApplicationContext(), DiscountActivity.class);
-                intent.putExtra("name", name);
+//                Intent intent = new Intent(getApplicationContext(), DiscountActivity.class);
+//                intent.putExtra("name", name);
+                Intent intent = DiscountActivity.getIntent(getApplicationContext(), name);
                 startActivity(intent);
             }
         });
@@ -103,7 +105,8 @@ public class ProfilePage extends AppCompatActivity {
 
                                 if (!uniqueUsername(name)) {
                                     Log.d("DELETE?", deleteUser.toString());
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent intent = MainActivity.getIntent(getApplicationContext());
                                     startActivity(intent);
 //                                        https://stackoverflow.com/questions/3687315/how-to-delete-shared-preferences-data-from-app-in-android
 //                                      Clear shared preferences (clear all of them)
@@ -173,8 +176,9 @@ public class ProfilePage extends AppCompatActivity {
         return mSpecificUser == null;
     }
 
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, ProfilePage.class);
+        intent.putExtra("name", username);
         return intent;
     }
 
@@ -192,5 +196,11 @@ public class ProfilePage extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    public String getExtra(){
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        return name;
     }
 }

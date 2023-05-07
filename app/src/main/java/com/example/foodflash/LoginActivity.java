@@ -68,8 +68,11 @@ public class LoginActivity extends AppCompatActivity {
 
 //                        https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                        Sending extras bc if I changed the function things would break
-                        Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
-                        intent.putExtra("name", username);
+//                        Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+//                        intent.putExtra("name", username);
+//                        startActivity(intent);
+
+                        Intent intent = LandingPageActivity.getIntent(getApplicationContext(), username);
                         startActivity(intent);
                     }
                     else{

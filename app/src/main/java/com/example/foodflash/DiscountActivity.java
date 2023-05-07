@@ -90,8 +90,9 @@ public class DiscountActivity extends AppCompatActivity {
     private boolean searchForDiscount(String discountCode){
         return mDiscountDAO.getDiscountByCode(discountCode) != null;
     }
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, DiscountActivity.class);
+        intent.putExtra("name", username);
         return intent;
     }
 }

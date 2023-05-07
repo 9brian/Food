@@ -38,9 +38,6 @@ public class SearchItemActivity extends AppCompatActivity {
     Item mItemFinder;
     Item heldItem;
 
-    Item mNewItem;
-
-
     CartDAO mCartDAO;
     UserDAO mUserDAO;
     User mFoundUser;
@@ -108,8 +105,9 @@ public class SearchItemActivity extends AppCompatActivity {
 
 //                  https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                  Manual intent bc changing the function would break the activity
-                    Intent i = getIntent();
-                    String name = i.getStringExtra("name");
+//                    Intent i = getIntent();
+//                    String name = i.getStringExtra("name");
+                    String name = getExtra();
 
                     if(findUser(name)){
                         mNewUser = mUserDAO.getUserByName(name);
@@ -144,8 +142,15 @@ public class SearchItemActivity extends AppCompatActivity {
         return mFoundUser != null;
     }
 
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, SearchItemActivity.class);
+        intent.putExtra("name", username);
         return intent;
+    }
+
+    public String getExtra(){
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        return name;
     }
 }

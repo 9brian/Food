@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         return mSpecificItem != null;
     }
 
+    // Intent Factory
     public static Intent getIntent(Context context){
         Intent intent = new Intent(context, MainActivity.class);
         return intent;

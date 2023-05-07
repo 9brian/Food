@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodflash.DB.AppDataBase;
 import com.example.foodflash.DB.UserDAO;
@@ -140,7 +141,8 @@ public class SignUpActivity extends AppCompatActivity {
                         mUsernameVerifier.setText("");
                     }
                 } else{
-                    mUsernameVerifier.setText("Username is already taken.");
+//                    mUsernameVerifier.setText("Username is already taken.");
+                    Toast.makeText(SignUpActivity.this, "Username is already taken", Toast.LENGTH_SHORT).show();
                 }
 
                 // Validate Password
@@ -170,8 +172,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 //                              https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                                how to use extras
-                                Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
-                                intent.putExtra("name", username);
+//                                Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+//                                intent.putExtra("name", username);
+//                                startActivity(intent);
+
+                                Intent intent = LandingPageActivity.getIntent(getApplicationContext(), username);
                                 startActivity(intent);
                             }
                         }

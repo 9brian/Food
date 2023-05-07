@@ -73,8 +73,9 @@ public class CancelActivity extends AppCompatActivity {
 
 //        https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //      Manual intent bc changing the function would break the activity
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+//        Intent intent = getIntent();
+//        String name = intent.getStringExtra("name");
+        String name = getExtra();
 
 
 //        https://www.youtube.com/watch?v=JB3ETK5mh3c
@@ -129,8 +130,9 @@ public class CancelActivity extends AppCompatActivity {
                         heldItem = mItemDAO.getItemByName(search);
 //                        https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //                        Manual intent bc changing the function would break the activity
-                        Intent i = getIntent();
-                        String name = i.getStringExtra("name");
+//                        Intent i = getIntent();
+//                        String name = i.getStringExtra("name");
+                        String name = getExtra();
 
 
                         int menuId = heldItem.getItemId();
@@ -182,8 +184,15 @@ public class CancelActivity extends AppCompatActivity {
         return mFoundUser != null;
     }
 
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, CancelActivity.class);
+        intent.putExtra("name", username);
         return intent;
+    }
+
+    public String getExtra(){
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        return name;
     }
 }
