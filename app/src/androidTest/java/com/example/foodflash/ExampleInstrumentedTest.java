@@ -33,6 +33,8 @@ import java.util.Optional;
 public class ExampleInstrumentedTest {
     //    Used Android Studio documentation to set up DB
 //    https://developer.android.com/training/data-storage/room/testing-db
+//    This video helped with the intial set up of the db test
+//    https://www.youtube.com/watch?v=xGbr9LOSbC0
     private AppDataBase DB;
     private UserDAO userDao;
     private ItemDAO itemDao;
