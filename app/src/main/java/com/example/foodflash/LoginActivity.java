@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.example.foodflash.DB.AppDataBase;
 import com.example.foodflash.DB.UserDAO;
 import com.example.foodflash.databinding.ActivityLoginBinding;
-import com.example.foodflash.databinding.ActivityMainBinding;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String LOGIN_ACTIVITY_NAME = "com.example.foodflash.LoginActivityName";
@@ -57,21 +55,24 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String username = mUsername_edittext.getText().toString();
-                String password = mPassword_edittext.getText().toString();
+                String userEnteredPassword = mPassword_edittext.getText().toString();
 
-                if(findUser(username)){
+                if(userExists(username)){
                     mExistingUser = mUserDAO.getUserByName(username);
-                    String p = mExistingUser.getPassWord();
+                    String userDbPassword = mExistingUser.getPassWord();
 
-                    if(p.equals(password)){
+                    if(userDbPassword.equals(userEnteredPassword)){
                         SharedPreferences.Editor editor = mSharedPreferences.edit();
                         editor.putString("loginName", username);
                         editor.apply();
 
-//                  https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
-//                  Sending extras bc if I changed the function things would break
-                        Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
-                        intent.putExtra("name", username);
+//                        https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                        Sending extras bc if I changed the function things would break
+//                        Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+//                        intent.putExtra("name", username);
+//                        startActivity(intent);
+
+                        Intent intent = LandingPageActivity.getIntent(getApplicationContext(), username);
                         startActivity(intent);
                     }
                     else{
@@ -84,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Reroute to sign up page
         mNoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,9 +95,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    private boolean findUser(String userName){
+    private boolean userExists(String userName){
         mSpecificUser = mUserDAO.getUserByName(userName);
-        // Returns true of user does not exist
         return mSpecificUser != null;
     }
 

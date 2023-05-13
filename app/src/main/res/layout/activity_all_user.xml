@@ -10,6 +10,8 @@
         android:id="@+id/all_users_textview"
         android:layout_width="345dp"
         android:layout_height="662dp"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

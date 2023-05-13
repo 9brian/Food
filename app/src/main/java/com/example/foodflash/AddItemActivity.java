@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodflash.DB.AppDataBase;
 import com.example.foodflash.DB.ItemDAO;
@@ -53,7 +54,6 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 submitMenuItem();
-                // Create Dialog to confirm item has been entered
             }
         });
     }
@@ -66,6 +66,7 @@ public class AddItemActivity extends AppCompatActivity {
         Item menuItem = new Item(strName, strDesc, price);
 
         mItemDAO.insert(menuItem);
+        Toast.makeText(AddItemActivity.this, "Menu Item has been created", Toast.LENGTH_SHORT).show();
     }
 
     public static Intent getIntent(Context context){

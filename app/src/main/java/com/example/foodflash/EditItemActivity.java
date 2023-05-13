@@ -6,12 +6,14 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.foodflash.DB.AppDataBase;
 import com.example.foodflash.DB.ItemDAO;
@@ -47,6 +49,7 @@ public class EditItemActivity extends AppCompatActivity {
         changePrice = binding.changeItemPriceEdittext;
         editButton = binding.editItemButton;
 
+
         mItemDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().ItemDAO();
 
@@ -63,8 +66,9 @@ public class EditItemActivity extends AppCompatActivity {
                     foundItem.setItemPrice(price);
 
                     mItemDAO.update(foundItem);
+                    Toast.makeText(EditItemActivity.this, "Item has been updated", Toast.LENGTH_SHORT).show();
                 } else{
-                    Log.d("DNE", "this dont exist");
+                    Toast.makeText(EditItemActivity.this, "Item does not exist", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -73,7 +77,6 @@ public class EditItemActivity extends AppCompatActivity {
 
     private boolean itemExists(String itemName){
         mItemFinder = mItemDAO.getItemByName(itemName);
-        // Returns true if user does exist
         return mItemFinder != null;
     }
 

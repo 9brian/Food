@@ -36,7 +36,8 @@ public class AdminPage extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddItemActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), AddItemActivity.class);
+                Intent intent = AddItemActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });
@@ -44,7 +45,8 @@ public class AdminPage extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), EditItemActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), EditItemActivity.class);
+                Intent intent = EditItemActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });
@@ -52,7 +54,8 @@ public class AdminPage extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DeleteItemActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), DeleteItemActivity.class);
+                Intent intent = DeleteItemActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });
@@ -60,7 +63,8 @@ public class AdminPage extends AppCompatActivity {
         viewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AllUserActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), AllUserActivity.class);
+                Intent intent = AllUserActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });

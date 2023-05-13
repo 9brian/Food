@@ -6,6 +6,7 @@ import androidx.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -45,6 +46,8 @@ public class HistoryActivity extends AppCompatActivity {
         mHistory = binding.historyOrderTextview;
         mTotal = binding.totalOrderTextview;
 
+        mHistory.setMovementMethod(new ScrollingMovementMethod());
+
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries().build().UserDAO();
         mItemDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
@@ -57,14 +60,13 @@ public class HistoryActivity extends AppCompatActivity {
 
 //      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
 //      Manual intent bc changing the function would break the activity
-        Intent i = getIntent();
-        String name = i.getStringExtra("name");
+//        Intent i = getIntent();
+//        String name = i.getStringExtra("name");
+        String name = getExtra();
 
         getUser = mUserDAO.getUserByName(name);
         int userId = getUser.getUserId();
         int discountId = getUser.getDiscountId();
-
-        Log.d("tag", userId + " " + discountId);
 
         refreshDisplay(userId, discountId);
     }
@@ -87,13 +89,12 @@ public class HistoryActivity extends AppCompatActivity {
                         userItems.getItemPrice() + "\n" +
                         "=-=-=-=-=-=-=-=-=-=-=" + "\n");
                 subtotal += userItems.getItemPrice();
-                // Fetch discounts
-                // Show subtotal
 
             }
-            Log.d("tag", String.valueOf(subtotal));
 
-            double discountOff = discountPercentage * subtotal;
+            double discountPercentageFormat = discountPercentage/100.0;
+            double discountOff = discountPercentageFormat * subtotal;
+
             stringBuilt.append("=-=-=-=-=-=-=-=-=--=-=-=-=-=").append("\n");
             stringBuilt.append("Order Summary").append("\n");
             stringBuilt.append("Subtotal: $").append(subtotal).append("\n");
@@ -111,8 +112,15 @@ public class HistoryActivity extends AppCompatActivity {
         }
     }
 
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, HistoryActivity.class);
+        intent.putExtra("name", username);
         return intent;
+    }
+
+    public String getExtra(){
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        return name;
     }
 }

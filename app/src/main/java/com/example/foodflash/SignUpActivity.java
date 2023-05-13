@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodflash.DB.AppDataBase;
 import com.example.foodflash.DB.UserDAO;
@@ -72,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String username = mUsername.getText().toString();
+
                 // Validate Username
                 if (uniqueUsername(username)){
                     if (username.length() < 4){
@@ -109,7 +111,8 @@ public class SignUpActivity extends AppCompatActivity {
 //                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
 //                                startActivity(intent);
 
-//      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                              https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                              How to  use extras
 
                                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                                 editor.putString("loginName", username);
@@ -122,25 +125,10 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     }
                 }
-
-//                // Manually delete entries
-//                if(mUsername.getText().toString().equals("DeleteMyAccount")){
-//                    String hardCodedString = "admin2";
-//                    deleter = mUserDAO.getUserByName(hardCodedString);
-//
-//                    if(!uniqueUsername(hardCodedString)){
-//                        Log.d("DELETE?", deleter.toString());
-//                        mUserDAO.delete(deleter);
-//                    }
-//                    else{
-//                        Log.d("DELETE", deleter.toString());
-//                    }
-//                }
             }
-
-
         });
 
+        // Manually create an admin
         mSignup.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -153,7 +141,8 @@ public class SignUpActivity extends AppCompatActivity {
                         mUsernameVerifier.setText("");
                     }
                 } else{
-                    mUsernameVerifier.setText("Username is already taken.");
+//                    mUsernameVerifier.setText("Username is already taken.");
+                    Toast.makeText(SignUpActivity.this, "Username is already taken", Toast.LENGTH_SHORT).show();
                 }
 
                 // Validate Password
@@ -178,32 +167,26 @@ public class SignUpActivity extends AppCompatActivity {
                             if(mPassword.getText().toString().equals(mRetype.getText().toString())){
                                 // Send Intent
                                 submitAdminInfo();
-//                                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
-//                                startActivity(intent);
+
                                 String username = mUsername.getText().toString();
-//      https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
-                                Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
-                                intent.putExtra("name", username);
+
+//                              https://www.geeksforgeeks.org/how-to-send-data-from-one-activity-to-second-activity-in-android/
+//                                how to use extras
+//                                Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
+//                                intent.putExtra("name", username);
+//                                startActivity(intent);
+
+                                Intent intent = LandingPageActivity.getIntent(getApplicationContext(), username);
                                 startActivity(intent);
                             }
                         }
-                    }
-                }
-
-                // Manually delete entries
-                if(mUsername.getText().toString().equals("DeleteMyAccount")){
-                    String hardCodedString = "Yes";
-                    deleter = mUserDAO.getUserByName(hardCodedString);
-
-                    if(uniqueUsername(hardCodedString)){
-                        Log.d("DELETE?", deleter.toString());
-                        mUserDAO.delete(deleter);
                     }
                 }
                 return false;
             }
         });
 
+        // Reroute to login page
         mNoSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -213,16 +196,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }//end of onCreate
 
-//    private void deleteUserInfo(){
-//        String username = mUsername.getText().toString();
-//        String password = mPassword.getText().toString();
-//        String discounter = "1";
-//        boolean isAdmin = true;
-//
-//        User user = new User(username, password, discounter, isAdmin);
-//
-//        mUserDAO.delete(user);
-//    }
     private void submitUserInfo(){
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
@@ -247,7 +220,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean uniqueUsername(String userName){
         mSpecificUser = mUserDAO.getUserByName(userName);
-
         return mSpecificUser == null;
     }
 

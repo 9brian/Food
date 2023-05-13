@@ -24,7 +24,6 @@ public class DeleteItemActivity extends AppCompatActivity {
     Button mDeleteItem;
     TextView mItemFoundDisplay;
 
-    Item mFindItem;
     Item locatedItem;
 
     ItemDAO mItemDAO;
@@ -52,7 +51,6 @@ public class DeleteItemActivity extends AppCompatActivity {
                 if(itemExists(searchItem)){
                     mItemFoundDisplay.setText("");
                     locatedItem = mItemDAO.getItemByName(searchItem);
-    //                String str = mItemDAO.getAll().toString();
 
                     // https://www.youtube.com/watch?v=cPr22fRFGwg
                     // How to create a dialog found here ^
